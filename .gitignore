@@ -1,0 +1,6 @@
+.env.local
+node_modules
+ecosystem.config.json
+pcakage-lock.json
+.env
+.env.development

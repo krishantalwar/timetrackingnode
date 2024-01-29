@@ -1,0 +1,164 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userid:
+          type: number
+        user_info:
+          type: object
+        status:
+          type: string
+          enum: [0, 1]
+      example:
+          userid: 3
+          email: bhavesh1@mailinator.com
+          email_notification: true
+          user_info:
+            image: "/ms/quickspot/dev/frontend/static/media/usericon.4e887e8c071e0efb3bb485dcd98b6644.svg"
+            lastName: Singh
+            cpfNumber: 252.278.647-48
+            firstName: bhavesh
+            knowSource: Friend
+            companyName: ''
+            countryCode: "+55"
+            dateOfBirth: '2002-02-02'
+            phone_number: 123-123-1231
+          status: 1
+          verification_status: true
+          user_type: qs_user
+          created_on: '2022-07-22T02:55:49.721Z'
+          modified_on: '2022-07-28T08:50:53.422Z'
+    GeneralSetting:
+      type: object
+      properties:
+        id:
+          type: number
+        address:
+          type: string
+        phone_number:
+          type: string
+        fax_number:
+          type: string
+        support_hours:
+          type: string
+        facebook_url:
+          type: string
+        instagram_url:
+          type: string
+        pinterest:
+          type: string
+        google_url:
+          type: string
+        modified_on:
+          type: date
+        created_on:
+          type: date
+        created_by:
+          type: string
+        modified_by:
+          type: string
+      example:
+          id: 1
+          address: address
+          phone_number: phone_number
+          fax_number: fax_number
+          support_hours: support_hours
+          facebook_url: facebook_url
+          instagram_url: instagram_url
+          pinterest: pinterest
+          google_url: google_url
+          modified_on: '2022-08-20T08:22:03.062Z'
+          created_on: '2022-08-20T08:22:03.062Z'
+          created_by: John Doe
+          modified_by: John Doe
+    Lookup:
+      type: object
+      properties:
+        qs_lookup_key:
+          type: string
+        qs_lookup_desc:
+          type: string
+        qs_lookup_details:
+          type: object
+        status:
+          type: string
+          enum: [0, 1]
+      example:
+        qs_lookup_id: 1
+        qs_lookup_key: qs_category
+        qs_lookup_desc: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ante arcu, suscipit at vestibulum ac, semper sit amet tellus. In condimentum sodales consectetur. Fusce sagittis.
+        status: 1
+        qs_lookup_details: {"uploaded_picture":"https:google.com"}
+
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+        expires:
+          type: string
+          format: date-time
+      example:
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWJhYzUzNDk1NGI1NDEzOTgwNmMxMTIiLCJpYXQiOjE1ODkyOTg0ODQsImV4cCI6MTU4OTMwMDI4NH0.m1U63blB0MLej_WfB7yC2FTMnCziif9X8yzwDEfJXAg
+        expires: 2020-05-12T16:18:04.793Z
+
+    AuthenticationTokens:
+      type: object
+      properties:
+        access:
+          $ref: '#/components/schemas/Token'
+        refresh:
+          $ref: '#/components/schemas/Token'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+
+  responses:
+    DuplicateEmail:
+      description: Email already taken
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Email already taken
+    Unauthorized:
+      description: unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Please authenticate
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 403
+            message: Forbidden
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+
+  securitySchemes:
+    bearerAuthentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
