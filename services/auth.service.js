@@ -5,6 +5,7 @@ const Token = require('../models/token.model');
 const ApiError = require('../utils/ApiError');
 const { tokenTypes } = require('../config/tokens');
 
+const bcrypt = require('bcryptjs');
 /**
  * Login with username and password
  * @param {string} email
@@ -13,6 +14,12 @@ const { tokenTypes } = require('../config/tokens');
  */
 const loginUserWithEmailAndPassword = async (email, password) => {
     const user = await userService.getUserByEmail(email);
+    // console.log(user);
+    // console.log(password);
+    // const asd=await bcrypt.hash(password, 8);
+    // console.log(asd);
+    // console.log("aswwss ",await user.isPasswordMatch(password));
+    // return true;  
     if (!user || !(await user.isPasswordMatch(password))) {
         throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect email or password');
     }

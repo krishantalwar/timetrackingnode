@@ -1,22 +1,28 @@
+const { tokenTypes } = require('../config/tokens');
+
 module.exports = (sequelize, Sequelize) => {
-    const Lookup = sequelize.define("qs_lookup_info", {
-        qs_lookup_id: {
+    const Lookup = sequelize.define("auth_token",
+        {
+        id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        qs_lookup_key: {
-            type: Sequelize.STRING
-        },
-        qs_lookup_desc: {
+        token: {
             type: Sequelize.STRING,
-            defaultValue: ""
+            required: true,
         },
-        qs_lookup_details: {
-            type: Sequelize.JSONB
+        user: {
+            type: Sequelize.STRING,
+            required: true,
         },
-        status: {
-            type: Sequelize.INTEGER
+        type: {
+            type: Sequelize.ENUM([tokenTypes.REFRESH, tokenTypes.RESET_PASSWORD, tokenTypes.VERIFY_EMAIL]),
+            required: true,
+        },
+        expires: {
+            type: Sequelize.DATE,
+            required: true,
         },
         created_by: {
             type: Sequelize.STRING,
@@ -46,7 +52,7 @@ module.exports = (sequelize, Sequelize) => {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'qs_lookup_info'
+        tableName: 'auth_token'
     });
     return Lookup;
 };

@@ -17,7 +17,7 @@ const Sequelize = db.Sequelize;
  * @returns {Promise<User>}
  */
 const createUser = async (userBody, headers) => {
-  console.log(User);
+  // console.log(User);
   if (await User.isEmailTakenWithEmail(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken.");
   }
@@ -324,6 +324,36 @@ const updateSocialUser = async (userBody, userId) => {
   return user;
 };
 
+const getUserByEmail = async (email) => {
+  console.log(email);
+  return await User.findOne({
+    where: { 'email':email },
+
+    // include: [
+    //   {
+    //     model: Spot,
+    //     // as: "user",
+    //   },
+    // ],
+    attributes: {
+      exclude: [
+        // "password",
+        // "resetlink",
+        // "verification_code",
+        // "email_notification",
+        // "verification_status",
+        // "referral_code",
+        // "user_referral_code",
+        // "username",
+        // "user_type",
+      ],
+    },
+  });
+
+//  return await User.findAll();
+};
+
+
 module.exports = {
   createUser,
   queryUsers,
@@ -336,4 +366,5 @@ module.exports = {
   fetchUserByEmail,
   saveSocialUser,
   updateSocialUser,
+  getUserByEmail
 };

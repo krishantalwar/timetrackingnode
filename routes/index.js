@@ -1,27 +1,50 @@
-let express = require("express");
-let router = express.Router();
-// const uploadCtrl = require("../controllers/upload.ctrl");
-// let {searchSpot,getSpotDetailCtrl,listCityOrCategory} = require("../controllers/myspots.ctrl");
-// const { validate } = require("../utills/validators/validate_validator");
-// const validation = require("../utills/validators/myspots_validators");
+const express = require("express");
+const config = require("../config/config");
+const authenticationRoute = require("./v1/authentication.route");
+const userRoute = require("./v1/user.route");
 
+const router = express.Router();
 
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const defaultRoutes = [
+  {
+    path: "/authentication",
+    route: authenticationRoute,
+  },
+  // {
+  //   path: "/users",
+  //   route: userRoute,
+  // },
+  // {
+  //   path: "/profile",
+  //   route: profileRoute,
+  // },
+  // {
+  //   path: "/general-settings",
+  //   route: generalSettingRoute,
+  // },
+  // {
+  //   path: "/email-templates",
+  //   route: emailTemplateRoute,
+  // },
+ 
+];
 
-/* GET users listing. */
-// router.get("/", function (req, res, next) {
-//   res.render("index.hbs", { title: "QuickSpot" });
-// });
+// const devRoutes = [
+//   // routes available only in development mode
+//   {
+//     path: "/docs",
+//     route: docsRoute,
+//   },
+// ];
 
+defaultRoutes.forEach((route) => {
+  router.use(route.path, route.route);
+});
 
-// router.get("/images/:key",uploadCtrl.getImage);
-
-// router.post("/images", upload.single("image"), uploadCtrl.uploadImage);
-
-// router.post("/getspots",validation.searchSpotRules(),validate,searchSpot);
-// router.get("/viewspot/:id", getSpotDetailCtrl);
-// router.get("/getlist/:keyname",listCityOrCategory);
-
+// if (config.env === "development") {
+//   devRoutes.forEach((route) => {
+//     router.use(route.path, route.route);
+//   });
+// }
 
 module.exports = router;

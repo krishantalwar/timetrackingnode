@@ -1,7 +1,7 @@
 "use strict";
 const jwt = require("jsonwebtoken"); // used to create, sign, and verify tokens
 const { decreptJwtToken } = require("../utills/jwtToken");
-const { fetchUserDataWithEmail } = require("../queries/user_queries");
+// const { fetchUserDataWithEmail } = require("../queries/user_queries");
 const {
   error_code,
   error_messages,

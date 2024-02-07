@@ -9,7 +9,7 @@ const {
   handleBarService,
 } = require("../services");
 const { generateRandamKeyCode } = require("../utills/common");
-const { updateUserResetLinkData } = require("../queries/user_queries");
+// const { updateUserResetLinkData } = require("../queries/user_queries");
 const { mailerTransporter } = require("../utills/mailer_transporter");
 
 const createUser = catchAsync(async (req, res) => {

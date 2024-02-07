@@ -3,10 +3,13 @@ const moment = require('moment');
 const httpStatus = require('http-status');
 const config = require('../config/config');
 const userService = require('./user.service');
-const { Token } = require('../models');
+// const { Token } = require('../models');
 const ApiError = require('../utils/ApiError');
 const { tokenTypes } = require('../config/tokens');
 
+// console.log(Token);
+const db = require("../models");
+const Token = db.tokens;
 /**
  * Generate token
  * @param {ObjectId} userId
@@ -71,6 +74,11 @@ const generateAuthTokens = async (user) => {
 
     const refreshTokenExpires = moment().add(config.jwt.refreshExpirationDays, 'days');
     const refreshToken = generateToken(user.id, refreshTokenExpires, tokenTypes.REFRESH);
+
+    // console.log("refreshTokenExpires", refreshTokenExpires)
+    // console.log("refreshToken",refreshToken)
+
+    // return true;
     await saveToken(refreshToken, user.id, refreshTokenExpires, tokenTypes.REFRESH);
 
     return {
