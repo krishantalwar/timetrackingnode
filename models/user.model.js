@@ -79,24 +79,19 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
 
-      social_info: {
-        type: Sequelize.TEXT,
-        defaultValue: null,
-      },
-      
       status: {
         type: Sequelize.INTEGER,
-        defaultValue: 1,
+        defaultValue: true,
       },
 
       // verification_status: {
       //   type: Sequelize.BOOLEAN,
       //   defaultValue: false,
       // },
-      // verification_code: {
-      //   type: Sequelize.STRING,
-      //   defaultValue: null,
-      // },
+      verification_code: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+      },
       user_type: {
         type: Sequelize.STRING,
         defaultValue: null,
@@ -123,14 +118,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
       },
-      // deleted_by: {
-      //     type: Sequelize.STRING,
-      //     defaultValue: null
-      // },
-      // is_deleted: {
-      //     type: Sequelize.BOOLEAN,
-      //     defaultValue: false
-      // },
+      deleted_by: {
+          type: Sequelize.STRING,
+          defaultValue: null
+      },
+      is_deleted: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+      },
     },
     {
       sequelize,

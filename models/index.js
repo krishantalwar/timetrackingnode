@@ -27,6 +27,8 @@ db.sequelize = sequelize;
 // db.lookups = require("./lookup.model")(sequelize, Sequelize);
 db.tokens = require("./token.model")(sequelize, Sequelize);
 db.users = require("./user.model")(sequelize, Sequelize);
+db.roles = require("./roles.model")(sequelize, Sequelize);
+db.screen = require("./screen.model")(sequelize, Sequelize);
 
 
 // db.spots.hasOne(db.lookups, { foreignKey: "qs_lookup_id", target: "qs_type_id", as: "qs_category" });
