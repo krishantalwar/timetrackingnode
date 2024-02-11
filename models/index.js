@@ -29,7 +29,7 @@ db.tokens = require("./token.model")(sequelize, Sequelize);
 db.users = require("./user.model")(sequelize, Sequelize);
 db.roles = require("./roles.model")(sequelize, Sequelize);
 db.screen = require("./screen.model")(sequelize, Sequelize);
-db.permissions = require("./permissions.model")(sequelize, Sequelize);
+db.permissions = require("./permissions.model.js")(sequelize, Sequelize);
 db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
 
 

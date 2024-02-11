@@ -74,10 +74,6 @@ module.exports = (sequelize, Sequelize) => {
       //   defaultValue: null,
       // },
 
-      user_info: {
-        type: Sequelize.TEXT,
-        defaultValue: null,
-      },
 
       status: {
         type: Sequelize.INTEGER,
@@ -92,18 +88,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
       },
-      user_type: {
-        type: Sequelize.STRING,
-        defaultValue: null,
-      },
-      company_id: {
-        type: Sequelize.STRING,
-        defaultValue: null,
-      },
-      role_id: {
-        type: Sequelize.STRING,
-        defaultValue: null,
-      },
+
 
       resetlink: {
         type: Sequelize.STRING,

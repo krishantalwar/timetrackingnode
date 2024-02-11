@@ -1,59 +1,29 @@
 const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
-  class Permissions extends Model {
+  class Department extends Model {
    
-    
-
-
   }
 
-  Permissions.init(
+  Department.init(
     {
-      premissionid: {
+      departmentid: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      screen_code: {
+      department_code: {
         type: Sequelize.STRING,
         defaultValue: null,
       },
-      screen_name: {
+      name: {
         type: Sequelize.STRING,
         defaultValue: null,
-      },
-      // user_id: {
-      //   type: Sequelize.STRING,
-      //   defaultValue: null,
-      // },
-      // user_code: {
-      //   type: Sequelize.STRING,
-      //   defaultValue: null,
-      // },
-
-    view: {
-            type: Sequelize.STRING,
-            defaultValue: false,
-          },
-    edit: {
-            type: Sequelize.STRING,
-            defaultValue: false,
-          },
-    delete: {
-            type: Sequelize.STRING,
-            defaultValue: false,
-          },
-        
-
-        
-
+          }, 
       status: {
         type: Sequelize.INTEGER,
         defaultValue: true,
       },
-
-
       created_by: {
         type: Sequelize.STRING,
         defaultValue: null,
@@ -82,9 +52,9 @@ module.exports = (sequelize, Sequelize) => {
       freezeTableName: true,
 
       // define the table's name
-      tableName: "permissions",
+      tableName: "department",
     }
   );
 
-  return Permissions;
+  return Department;
 };
