@@ -1,44 +1,56 @@
 const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
-  class Permissions extends Model {
+  class ShiftMaster extends Model {
    
-    
-
-
   }
 
-  Permissions.init(
+  ShiftMaster.init(
     {
-      premissionid: {
+      shiftid: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      screen_code: {
+      shift_code: {
         type: Sequelize.STRING,
         defaultValue: null,
       },
       name: {
         type: Sequelize.STRING,
         defaultValue: null,
-      },
-
-    view: {
-            type: Sequelize.STRING,
-            defaultValue: false,
           },
-    edit: {
-            type: Sequelize.STRING,
-            defaultValue: false,
+      start_time: {
+        type: Sequelize.TIME,
+        defaultValue: null,
           },
-    delete: {
-            type: Sequelize.STRING,
-            defaultValue: false,
+            end_time: {
+        type: Sequelize.TIME,
+        defaultValue: null,
           },
-        
-
-        
+            
+    break_start_time: {
+        type: Sequelize.TIME,
+        defaultValue: null,
+          },
+        break_end_time: {
+        type: Sequelize.TIME,
+        defaultValue: null,
+          },
+   
+    overtime_start_time: {
+        type: Sequelize.TIME,
+        defaultValue: null,
+          },   
+    
+    
+    overtime_end_time: {
+        type: Sequelize.TIME,
+        defaultValue: null,
+          },   
+      
+      
+      
 
       status: {
         type: Sequelize.INTEGER,
@@ -74,9 +86,9 @@ module.exports = (sequelize, Sequelize) => {
       freezeTableName: true,
 
       // define the table's name
-      tableName: "permissions",
+      tableName: "shift_master",
     }
   );
 
-  return Permissions;
+  return ShiftMaster;
 };

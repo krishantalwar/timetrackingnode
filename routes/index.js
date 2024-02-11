@@ -2,6 +2,7 @@ const express = require("express");
 const config = require("../config/config");
 const authenticationRoute = require("./v1/authentication.route");
 const userRoute = require("./v1/user.route");
+const shiftMasterRoute = require("./v1/shiftMaster.route");
 
 const router = express.Router();
 
@@ -14,10 +15,10 @@ const defaultRoutes = [
   //   path: "/users",
   //   route: userRoute,
   // },
-  // {
-  //   path: "/profile",
-  //   route: profileRoute,
-  // },
+  {
+    path: "/shiftmaster",
+    route: shiftMasterRoute,
+  },
   // {
   //   path: "/general-settings",
   //   route: generalSettingRoute,

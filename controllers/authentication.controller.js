@@ -14,7 +14,7 @@ const login = catchAsync(async (req, res) => {
     const { email, password } = req.body;
     const user = await authService.loginUserWithEmailAndPassword(email, password);
     const tokens = await tokenService.generateAuthTokens(user);
-    res.send({ user, tokens });
+    res.cookie('ssstoken', "sss", { httpOnly: true,secure: true, path:"/" }).send({ user, tokens });
 });
 
 const logout = catchAsync(async (req, res) => {

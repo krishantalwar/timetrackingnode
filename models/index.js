@@ -14,9 +14,9 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     acquire: dbConfig.pool.acquire,
     idle: dbConfig.pool.idle,
   },
-  schema:  dbConfig.DB,
+  // schema:  dbConfig.DB,
   logging: logger,
-  searchPath:  dbConfig.DB,
+  // searchPath:  dbConfig.DB,
 });
 
 // console.log(sequelize)
@@ -29,6 +29,8 @@ db.tokens = require("./token.model")(sequelize, Sequelize);
 db.users = require("./user.model")(sequelize, Sequelize);
 db.roles = require("./roles.model")(sequelize, Sequelize);
 db.screen = require("./screen.model")(sequelize, Sequelize);
+db.permissions = require("./permissions.model")(sequelize, Sequelize);
+db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
 
 
 // db.spots.hasOne(db.lookups, { foreignKey: "qs_lookup_id", target: "qs_type_id", as: "qs_category" });
