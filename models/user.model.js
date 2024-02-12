@@ -54,10 +54,19 @@ module.exports = (sequelize, Sequelize) => {
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
+             isEmail: true,           
+        allowNull: false,
       },
       password: {
         type: Sequelize.STRING,
-        defaultValue: null,
+        // defaultValue: null,
+        set(value) {
+      // Storing passwords in plaintext in the database is terrible.
+      // Hashing the value with an appropriate cryptographic hash function is better.
+      // Using the username as a salt is better.
+          this.setDataValue('password', hash(this.username + value));
+        }
       },
 
       // user_referral_code: {
@@ -107,14 +116,11 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.STRING,
           defaultValue: null
       },
-      is_deleted: {
-          type: Sequelize.BOOLEAN,
-          defaultValue: false
-      },
     },
     {
       sequelize,
       timestamps: true,
+      paranoid: true,
       createdAt: "created_on", // alias createdAt as created_on
       updatedAt: "modified_on", // alias updatedAt as modified_on
       // disable the modification of tablenames; By default, sequelize will automatically

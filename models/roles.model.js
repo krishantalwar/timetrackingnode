@@ -42,14 +42,11 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.STRING,
           defaultValue: null
       },
-      is_deleted: {
-          type: Sequelize.BOOLEAN,
-          defaultValue: false
-      },
     },
     {
       sequelize,
       timestamps: true,
+      paranoid: true,
       createdAt: "created_on", // alias createdAt as created_on
       updatedAt: "modified_on", // alias updatedAt as modified_on
       // disable the modification of tablenames; By default, sequelize will automatically

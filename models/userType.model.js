@@ -25,6 +25,7 @@ module.exports = (sequelize, Sequelize) => {
         {
             sequelize,
             timestamps: true,
+            paranoid: true,
             createdAt: "created_on", // alias createdAt as created_on
             updatedAt: "modified_on", // alias updatedAt as modified_on
             // disable the modification of tablenames; By default, sequelize will automatically
