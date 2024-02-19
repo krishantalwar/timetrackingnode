@@ -31,6 +31,11 @@ db.roles = require("./roles.model")(sequelize, Sequelize);
 db.screen = require("./screen.model")(sequelize, Sequelize);
 db.permissions = require("./permissions.model.js")(sequelize, Sequelize);
 db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
+db.designation = require("./designation.model")(sequelize, Sequelize);
+db.department = require("./department.model")(sequelize, Sequelize);
+db.permissions = require("./permissions.model")(sequelize, Sequelize);
+
+
 
 
 // db.spots.hasOne(db.lookups, { foreignKey: "qs_lookup_id", target: "qs_type_id", as: "qs_category" });

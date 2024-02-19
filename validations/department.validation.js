@@ -9,13 +9,8 @@ const customMessages = {
 };
 const add = {
     body: Joi.object().keys({
-    break_end_time: Joi.string().required(),
-      break_start_time: Joi.string().required(),
-      end_time: Joi.string().required(),
-      start_time: Joi.string().required(),
-      overtime_end_time: Joi.string().required(),
-      overtime_start_time: Joi.string().required(),
         name: Joi.string().required(),
+        
             // name: Joi.string().required().external(async (name,helpers) => {
         // You have to create `checkEmailInUse` funciton somewhere in your code and call it here
         //         const isNamenUse = await User.isNmailTakenWith(name);

@@ -23,6 +23,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
       },
+        role_id: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+      },
       // user_id: {
       //   type: Sequelize.STRING,
       //   defaultValue: null,

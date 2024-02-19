@@ -14,13 +14,19 @@ module.exports = (sequelize, Sequelize) => {
       return !!user;
     };
 
-    static isEmailTakenWithEmail = async (email, excludeUserId) => {
+    static isNmailTakenWith = async (email, excludeUserId) => {
       const user = await User.findOne({
         where: {
           email: email,
         },
         raw: true,
       });
+//       false
+// true
+// true
+      console.log(user)
+      // console.log(!user)
+      // console.log(!!user)
       return !!user;
     };
 

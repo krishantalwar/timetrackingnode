@@ -15,10 +15,14 @@ module.exports = (sequelize, Sequelize) => {
       shift_code: {
         type: Sequelize.STRING,
         defaultValue: null,
+          //  allowNull: false,
+        unique: true
       },
       name: {
         type: Sequelize.STRING,
-        defaultValue: null,
+       
+         allowNull: false,
+        unique: true
           },
       start_time: {
         type: Sequelize.TIME,
