@@ -38,10 +38,21 @@ const editShift = catchAsync(async (req, res) => {
 });
 
 
+const deletShift = catchAsync(async (req, res) => {
+  // console.log(req.body);
+  // console.log(req.params.id);
+
+  const shift = await shiftMasterService.deletShift(req.params.id);
+  res.status(httpStatus.OK).send({ "success": "success" });
+});
+
+
+
 module.exports = {
   saveShift,
   getShift,
   getDetailsById,
   getCode,
-  editShift
+  editShift,
+  deletShift
 };

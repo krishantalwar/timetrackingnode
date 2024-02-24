@@ -16,5 +16,9 @@ router.get('/:id',
 router.post('/edit/:id',
     validate(shiftMasterValidation.edit),
     shiftMasterController.editShift);
+
+router.get('/delete/:id',
+    // validateAsync(shiftMasterValidation.getDetail),
+    shiftMasterController.deletShift);
 router.get('/', validate(shiftMasterValidation.getShift), shiftMasterController.getShift);
 module.exports = router;

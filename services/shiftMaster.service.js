@@ -61,11 +61,21 @@ const editShift = async (shiftBody, id) => {
   return shift;
 };
 
+const deletShift = async (id) => {
+  const shift = await shiftMaster.destroy({
+    where: {
+      shiftid: id
+    }
+  });
+  console.log(shift)
+  return shift;
+};
 
 module.exports = {
   saveShift,
   queryShift,
   editShift,
   getCode,
-  getDetailsById
+  getDetailsById,
+  deletShift
 };
