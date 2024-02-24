@@ -22,7 +22,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
        
          allowNull: false,
-        unique: true
+          unique: true
           },
       start_time: {
         type: Sequelize.TIME,

@@ -23,7 +23,7 @@ const validate = (schema) => (req, res, next) => {
 const validateAsync = (schema) => (req, res, next) => {
   const validSchema = pick(schema, ["params", "query", "body"]);
   const object = pick(req, Object.keys(validSchema));
-  
+
   const { value, error } = Joi.compile(validSchema)
     .prefs({ errors: { label: "key" }, abortEarly: false })
     .validateAsync(object);
@@ -42,6 +42,6 @@ const validateAsync = (schema) => (req, res, next) => {
 // module.exports = validateAsync;
 
 module.exports = {
-    validate,
-    validateAsync,
+  validate,
+  validateAsync,
 };

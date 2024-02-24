@@ -25,7 +25,7 @@ const defaultRoutes = [
     path: "/designation",
     route: designationRoute,
   },
-    {
+  {
     path: "/department",
     route: departmentRoute,
   },
@@ -33,7 +33,7 @@ const defaultRoutes = [
   //   path: "/email-templates",
   //   route: emailTemplateRoute,
   // },
- 
+
 ];
 
 // const devRoutes = [
