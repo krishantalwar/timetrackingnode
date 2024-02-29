@@ -49,6 +49,20 @@ const verifyEmail = {
     }),
 };
 
+
+const changePassword = {
+    query: Joi.object().keys({
+        // token: Joi.string().required(),
+        current_password: Joi.string().min(3).max(15).required(),
+        new_password: Joi.string().min(3).max(15).required(),
+        confirm_password: Joi.any()
+            // .equal(Joi.ref('new_password'))
+            .required()
+        // // .label('Confirm password')
+        // .options({ messages: { 'any.only': '{{#label}} does not match' } })
+    }),
+};
+
 module.exports = {
     register,
     login,
@@ -57,4 +71,5 @@ module.exports = {
     forgotPassword,
     resetPassword,
     verifyEmail,
+    changePassword
 };

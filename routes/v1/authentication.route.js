@@ -1,5 +1,5 @@
 const express = require('express');
-const {validate,validateAsync} = require('../../middleware/validate');
+const { validate, validateAsync } = require('../../middleware/validate');
 const authenticationValidation = require('../../validations/authentication.validation');
 const authenticationController = require('../../controllers/authentication.controller');
 // const authentication = require('../../middleware/authentication');
@@ -18,7 +18,10 @@ router.post('/reset-password', validate(authenticationValidation.resetPassword),
 
 // router.post('/send-verification-email', authentication(), authenticationController.sendVerificationEmail);
 router.post('/verify-email', validate(authenticationValidation.verifyEmail), authenticationController.verifyEmail);
-// router.post('/change-password', authentication(), authenticationController.changePassword)
+router.post('/change-password',
+    // authentication(),
+    // validate(authenticationValidation.changePassword),
+    authenticationController.changePassword)
 
 module.exports = router;
 

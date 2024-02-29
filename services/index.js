@@ -6,6 +6,9 @@ module.exports.shiftMasterService = require("./shiftMaster.service");
 module.exports.designationService = require("./designation.service");
 module.exports.departmentService = require("./department.service");
 module.exports.permissionsService = require("./permissions.service");
+module.exports.rolesService = require("./roles.service");
+module.exports.userTypeService = require("./userType.service");
+module.exports.screeneService = require("./screen.service");
 
 
 // module.exports.blogService = require("./blog.service");

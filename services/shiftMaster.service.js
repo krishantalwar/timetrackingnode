@@ -3,6 +3,7 @@ const shiftMaster = db.shiftMaster;
 
 
 const saveShift = async (userBody) => {
+  console.log(userBody);
   const user = await shiftMaster.create(userBody);
   return user;
 };

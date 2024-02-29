@@ -44,7 +44,9 @@ const queryShift = async (filter, options) => {
 
 const getCode = async () => {
   const code = await Designation.count();
-  return "desi" + code;
+  // console.log("asdasdsad");
+  // return "desi" + code;
+  return { code: "DESI" + code };
 };
 
 const getDetailsById = async (id) => {
@@ -61,11 +63,21 @@ const editShift = async (shiftBody, id) => {
   console.log(shift);
   return shift;
 };
+const deletShift = async (id) => {
+  const shift = await Designation.destroy({
+    where: {
+      "designationid": id
+    }
+  });
+  console.log(shift)
+  return shift;
+};
 
 module.exports = {
   saveShift,
   queryShift,
   editShift,
   getCode,
-  getDetailsById
+  getDetailsById,
+  deletShift
 };

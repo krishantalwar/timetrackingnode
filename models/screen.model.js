@@ -2,8 +2,8 @@ const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
   class Screen extends Model {
-   
-    
+
+
 
 
   }
@@ -29,7 +29,10 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: true,
       },
 
-
+      company_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
       created_by: {
         type: Sequelize.STRING,
         defaultValue: null,
@@ -39,8 +42,8 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
       deleted_by: {
-          type: Sequelize.STRING,
-          defaultValue: null
+        type: Sequelize.STRING,
+        defaultValue: null
       },
     },
     {

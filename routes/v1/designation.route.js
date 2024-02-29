@@ -17,6 +17,9 @@ router.post('/edit/:id',
     validate(DesignationValidation.edit),
     DesignationController.editShift);
 
+router.get('/delete/:id',
+    // validateAsync(shiftMasterValidation.getDetail),1
+    DesignationController.deletShift);
 router.get('/', validate(DesignationValidation.getShift), DesignationController.getShift);
 
 

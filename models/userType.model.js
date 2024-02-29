@@ -34,7 +34,7 @@ module.exports = (sequelize, Sequelize) => {
             freezeTableName: true,
 
             // define the table's name
-            tableName: "country",
+            tableName: "user_type",
         }
     );
 

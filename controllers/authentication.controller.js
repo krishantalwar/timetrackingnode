@@ -7,7 +7,7 @@ const register = catchAsync(async (req, res) => {
     // console.log(user);
     // return true;
     const tokens = await tokenService.generateAuthTokens(user);
-    res.status(httpStatus.CREATED).send({ user, tokens});
+    res.status(httpStatus.CREATED).send({ user, tokens });
 });
 
 const login = catchAsync(async (req, res) => {
@@ -17,7 +17,7 @@ const login = catchAsync(async (req, res) => {
     // console.log(email);
     // console.log(password);
     // console.log(tokens);
-    res.cookie('ssstoken', "sss", {  path: "/", sameSite: 'strict',Priority:"High" }).send({user,tokens} );
+    res.cookie('ssstoken', "sss", { path: "/", sameSite: 'strict', Priority: "High" }).send({ user, tokens });
 });
 
 const logout = catchAsync(async (req, res) => {
@@ -53,7 +53,8 @@ const verifyEmail = catchAsync(async (req, res) => {
 });
 
 const changePassword = catchAsync(async (req, res) => {
-    await authService.changePassword(req.user, req.body)
+
+    await authService.changePassword(req.body)
     await res.send({ message: 'Your password successfully changed.' })
 })
 

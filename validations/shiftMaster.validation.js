@@ -16,6 +16,8 @@ const add = {
         overtime_end_time: Joi.string().required(),
         overtime_start_time: Joi.string().required(),
         name: Joi.string().required(),
+        // shiftid: Joi.allow(""),
+        shift_code: Joi.string().required(),
         // name: Joi.string().required().external(async (name,helpers) => {
         // You have to create `checkEmailInUse` funciton somewhere in your code and call it here
         //         const isNamenUse = await User.isNmailTakenWith(name);
@@ -47,6 +49,7 @@ const getDetail = {
         id: Joi.string().required(),
     }),
 };
+
 const edit = {
     body: Joi.object().keys({
         break_end_time: Joi.string().required(),
@@ -56,10 +59,10 @@ const edit = {
         overtime_end_time: Joi.string().required(),
         overtime_start_time: Joi.string().required(),
         name: Joi.string().required(),
-        // id: Joi.string().required(),
+        shiftid: Joi.number().required(""),
+        shift_code: Joi.string().required(),
 
     })
-
 };
 
 module.exports = {

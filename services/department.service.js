@@ -45,7 +45,8 @@ const queryShift = async (filter, options) => {
 
 const getCode = async () => {
   const code = await Department.count();
-  return "dep" + code;
+  // return "dep" + code;
+  return { code: "DEP" + code };
 };
 
 const getDetailsById = async (id) => {
@@ -63,11 +64,21 @@ const editShift = async (shiftBody, id) => {
   return shift;
 };
 
+const deletShift = async (id) => {
+  const shift = await Department.destroy({
+    where: {
+      "departmentid": id
+    }
+  });
+  console.log(shift)
+  return shift;
+};
 
 module.exports = {
   saveShift,
   queryShift,
   editShift,
   getCode,
-  getDetailsById
+  getDetailsById,
+  deletShift
 };

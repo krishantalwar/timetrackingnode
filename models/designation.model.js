@@ -2,7 +2,7 @@ const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
   class Designation extends Model {
-   
+
   }
 
   Designation.init(
@@ -19,8 +19,12 @@ module.exports = (sequelize, Sequelize) => {
       name: {
         type: Sequelize.STRING,
         defaultValue: null,
-          }, 
+      },
       status: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
+      company_id: {
         type: Sequelize.INTEGER,
         defaultValue: true,
       },
@@ -33,8 +37,8 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
       deleted_by: {
-          type: Sequelize.STRING,
-          defaultValue: null
+        type: Sequelize.STRING,
+        defaultValue: null
       },
     },
     {

@@ -3,7 +3,7 @@ const catchAsync = require('../utils/catchAsync');
 const { shiftMasterService, userService, tokenService } = require('../services');
 
 const saveShift = catchAsync(async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const shift = await shiftMasterService.saveShift(req.body);
 
   res.status(httpStatus.CREATED).send({ shift });
@@ -30,11 +30,12 @@ const getDetailsById = catchAsync(async (req, res) => {
 });
 
 const editShift = catchAsync(async (req, res) => {
-  // console.log(req.body);
-  // console.log(req.params.id);
+  console.log(req.body);
+  console.log(req.params.id);
 
   const shift = await shiftMasterService.editShift(req.body, req.params.id);
   res.send(shift);
+  // res.send({ "sdasd": "asdas" });
 });
 
 

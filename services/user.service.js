@@ -95,23 +95,23 @@ const queryUsers = async (filter, options) => {
  */
 const getUserById = async (id) => {
   return User.findByPk(id, {
-    include: [
-      {
-        model: Spot,
-        as: "spots",
-      },
-    ],
+    // include: [
+    //   {
+    //     model: Spot,
+    //     as: "spots",
+    //   },
+    // ],
     attributes: {
       exclude: [
-        "password",
-        "resetlink",
-        "verification_code",
-        "email_notification",
-        "verification_status",
-        "referral_code",
-        "user_referral_code",
-        "username",
-        "user_type",
+        // "password",
+        // "resetlink",
+        // "verification_code",
+        // "email_notification",
+        // "verification_status",
+        // "referral_code",
+        // "user_referral_code",
+        // "username",
+        // "user_type",
       ],
     },
   });
@@ -123,24 +123,24 @@ const getUserById = async (id) => {
  * @returns {Promise<User>}
  */
 const getUserDetailsById = async (id) => {
-  return User.findByPk(id, {
-    include: [
-      {
-        model: Spot,
-        as: "spots",
-      },
-    ],
+  return await User.findByPk(id, {
+    // include: [
+    //   {
+    //     model: Spot,
+    //     as: "spots",
+    //   },
+    // ],
     attributes: {
       exclude: [
-        "password",
-        "resetlink",
-        "verification_code",
-        "email_notification",
-        "verification_status",
-        "referral_code",
-        "user_referral_code",
-        "username",
-        "user_type",
+        // "password",
+        // "resetlink",
+        // "verification_code",
+        // "email_notification",
+        // "verification_status",
+        // "referral_code",
+        // "user_referral_code",
+        // "username",
+        // "user_type",
       ],
     },
     //     raw: true,
@@ -175,6 +175,7 @@ const checkEmailExist = async (email, excludeUserId) => {
  */
 const updateUserById = async (userId, updateBody) => {
   const user = await getUserById(userId);
+  console.log(user)
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found");
   }
@@ -182,20 +183,20 @@ const updateUserById = async (userId, updateBody) => {
   if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken");
   }
-  if (
-    updateBody?.user_info?.cpfNumber &&
-    (await User.isCpfNumberTakenExcludeUserId(
-      updateBody?.user_info?.cpfNumber,
-      userId
-    ))
-  ) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "CPF / CNPJ# already taken.");
-  }
+  // if (
+  //   updateBody?.user_info?.cpfNumber &&
+  //   (await User.isCpfNumberTakenExcludeUserId(
+  //     updateBody?.user_info?.cpfNumber,
+  //     userId
+  //   ))
+  // ) {
+  //   throw new ApiError(httpStatus.BAD_REQUEST, "CPF / CNPJ# already taken.");
+  // }
 
   if (updateBody?.email) {
     updateBody.email = updateBody?.email?.toLowerCase();
   }
-
+  console.log(updateBody)
   Object.assign(user, updateBody);
   await user.save();
   return user;
@@ -325,9 +326,9 @@ const updateSocialUser = async (userBody, userId) => {
 };
 
 const getUserByEmail = async (email) => {
-  console.log(email);
+  // console.log(email);
   return await User.findOne({
-    where: { 'email':email },
+    where: { 'email': email },
 
     // include: [
     //   {
@@ -350,7 +351,7 @@ const getUserByEmail = async (email) => {
     },
   });
 
-//  return await User.findAll();
+  //  return await User.findAll();
 };
 
 

@@ -21,9 +21,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         raw: true,
       });
-//       false
-// true
-// true
+      //       false
+      // true
+      // true
       console.log(user)
       // console.log(!user)
       // console.log(!!user)
@@ -38,7 +38,7 @@ module.exports = (sequelize, Sequelize) => {
       return bcrypt.compare(password, user.password);
     };
 
-    
+
 
 
   }
@@ -61,17 +61,22 @@ module.exports = (sequelize, Sequelize) => {
       email: {
         type: Sequelize.STRING,
         unique: true,
-             isEmail: true,           
+        isEmail: true,
         allowNull: false,
       },
       password: {
         type: Sequelize.STRING,
         // defaultValue: null,
         set(value) {
-      // Storing passwords in plaintext in the database is terrible.
-      // Hashing the value with an appropriate cryptographic hash function is better.
-      // Using the username as a salt is better.
-          this.setDataValue('password', hash(this.username + value));
+          if (value != "" || value != null || value != undefined) {
+            this.setDataValue('password', (value));
+          } else {
+            this.setDataValue('password', hash(this.username + value));
+          }
+          // Storing passwords in plaintext in the database is terrible.
+          // Hashing the value with an appropriate cryptographic hash function is better.
+          // Using the username as a salt is better.
+
         }
       },
 
@@ -94,7 +99,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         defaultValue: true,
       },
-
+      company_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
       // verification_status: {
       //   type: Sequelize.BOOLEAN,
       //   defaultValue: false,
@@ -119,8 +127,8 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
       deleted_by: {
-          type: Sequelize.STRING,
-          defaultValue: null
+        type: Sequelize.STRING,
+        defaultValue: null
       },
     },
     {

@@ -118,7 +118,7 @@ module.exports = (sequelize, Sequelize) => {
             freezeTableName: true,
 
             // define the table's name
-            tableName: "user_Detail",
+            tableName: "user_detail",
         }
     );
 

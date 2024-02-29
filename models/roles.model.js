@@ -2,14 +2,15 @@ const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
   class Roles extends Model {
-   
-    
+
+
 
 
   }
 
   Roles.init(
     {
+      //   employee , reporting manger
       roleid: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -29,6 +30,10 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: true,
       },
 
+      company_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
 
       created_by: {
         type: Sequelize.STRING,
@@ -39,8 +44,8 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
       deleted_by: {
-          type: Sequelize.STRING,
-          defaultValue: null
+        type: Sequelize.STRING,
+        defaultValue: null
       },
     },
     {

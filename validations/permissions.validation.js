@@ -9,22 +9,8 @@ const customMessages = {
 };
 const add = {
     body: Joi.object().keys({
-        name: Joi.string().required(),
-        
-            // name: Joi.string().required().external(async (name,helpers) => {
-        // You have to create `checkEmailInUse` funciton somewhere in your code and call it here
-        //         const isNamenUse = await User.isNmailTakenWith(name);
-        //         console.log(isNamenUse);
-        //             if(isNamenUse) {
-        //                  return helpers.error('nameTaken.unique',{message:"Name is already taken"});
-        //             }
-
-        //         return name;
-        // }).messages({
-        //     'nameTaken.unique': 'Name is already taken.', // Define the error message for 'nameTaken.unique'
-        // })
-            //   name: Joi.string().required().custom(checkEmailInUse,'asd'),
-        
+        role_id: Joi.required(),
+        screen_id: Joi.required(),
     })
     //     .messages({
     // 'nameTaken.unique': 'Name is already taken.', // Define the error message for 'nameTaken.unique'
@@ -39,5 +25,5 @@ const getShift = {
 
 module.exports = {
     add,
-getShift
+    getShift
 };

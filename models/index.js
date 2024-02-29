@@ -33,9 +33,47 @@ db.permissions = require("./permissions.model.js")(sequelize, Sequelize);
 db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
 db.designation = require("./designation.model")(sequelize, Sequelize);
 db.department = require("./department.model")(sequelize, Sequelize);
-db.permissions = require("./permissions.model")(sequelize, Sequelize);
+// db.permissions = require("./permissions.model")(sequelize, Sequelize);
+// db.roles = require("./roles.model")(sequelize, Sequelize);
+db.userType = require("./userType.model")(sequelize, Sequelize);
 
 
+db.roles.belongsToMany(db.screen, {
+  through: db.permissions,
+  foreignKey: 'role_id',
+  // target: "roleid",
+  otherKey: 'screen_id',
+  as: 'screens_permissions'
+});
+
+db.roles.hasMany(db.permissions, {
+  // through: db.permissions,
+  foreignKey: 'role_id',
+  // target: "roleid",
+  // otherKey: 'role_id',
+  as: 'permissions',
+});
+
+
+db.permissions.hasOne(db.roles, {
+  // through: db.permissions,
+  // foreignKey: 'roleid',
+  foreignKey: {
+    name: 'roleid'
+  },
+  sourceKey: 'role_id',
+  as: 'roles'
+});
+
+db.permissions.hasOne(db.screen, {
+  // through: db.permissions,
+  // foreignKey: 'roleid',
+  foreignKey: {
+    name: 'screenid'
+  },
+  sourceKey: 'screen_id',
+  as: 'screens'
+});
 
 
 // db.spots.hasOne(db.lookups, { foreignKey: "qs_lookup_id", target: "qs_type_id", as: "qs_category" });

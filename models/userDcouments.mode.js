@@ -2,7 +2,7 @@ const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
   class UserDcouments extends Model {
-   
+
   }
 
   UserDcouments.init(
@@ -16,14 +16,18 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
       name: {
         type: Sequelize.STRING,
         defaultValue: null,
-          }, 
-    type: {
+      },
+      type: {
         type: Sequelize.STRING,
         defaultValue: null,
-        }, 
+      },
       status: {
         type: Sequelize.INTEGER,
         defaultValue: true,
@@ -37,8 +41,8 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
       deleted_by: {
-          type: Sequelize.STRING,
-          defaultValue: null
+        type: Sequelize.STRING,
+        defaultValue: null
       },
     },
     {

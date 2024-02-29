@@ -2,7 +2,7 @@ const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
   class Department extends Model {
-   
+
   }
 
   Department.init(
@@ -19,8 +19,12 @@ module.exports = (sequelize, Sequelize) => {
       name: {
         type: Sequelize.STRING,
         defaultValue: null,
-          }, 
+      },
       status: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
+      company_id: {
         type: Sequelize.INTEGER,
         defaultValue: true,
       },
@@ -33,14 +37,14 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
       deleted_by: {
-          type: Sequelize.STRING,
-          defaultValue: null
+        type: Sequelize.STRING,
+        defaultValue: null
       },
     },
     {
       sequelize,
       timestamps: true,
-            paranoid: true,
+      paranoid: true,
       createdAt: "created_on", // alias createdAt as created_on
       updatedAt: "modified_on", // alias updatedAt as modified_on
       // disable the modification of tablenames; By default, sequelize will automatically

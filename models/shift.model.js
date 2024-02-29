@@ -2,7 +2,7 @@ const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
   class ShiftMaster extends Model {
-   
+
   }
 
   ShiftMaster.init(
@@ -15,52 +15,55 @@ module.exports = (sequelize, Sequelize) => {
       shift_code: {
         type: Sequelize.STRING,
         defaultValue: null,
-          //  allowNull: false,
+        //  allowNull: false,
         unique: true
       },
       name: {
         type: Sequelize.STRING,
-       
-         allowNull: false,
-          unique: true
-          },
+
+        allowNull: false,
+        unique: true
+      },
       start_time: {
         type: Sequelize.TIME,
         defaultValue: null,
-          },
-            end_time: {
+      },
+      end_time: {
         type: Sequelize.TIME,
         defaultValue: null,
-          },
-            
-    break_start_time: {
+      },
+
+      break_start_time: {
         type: Sequelize.TIME,
         defaultValue: null,
-          },
-        break_end_time: {
+      },
+      break_end_time: {
         type: Sequelize.TIME,
         defaultValue: null,
-          },
-   
-    overtime_start_time: {
+      },
+
+      overtime_start_time: {
         type: Sequelize.TIME,
         defaultValue: null,
-          },   
-    
-    
-    overtime_end_time: {
+      },
+
+
+      overtime_end_time: {
         type: Sequelize.TIME,
         defaultValue: null,
-          },   
-      
-      
-      
+      },
+
+
+
 
       status: {
         type: Sequelize.INTEGER,
         defaultValue: true,
       },
-
+      company_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
 
       created_by: {
         type: Sequelize.STRING,
@@ -71,8 +74,8 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: null,
       },
       deleted_by: {
-          type: Sequelize.STRING,
-          defaultValue: null
+        type: Sequelize.STRING,
+        defaultValue: null
       },
     },
     {

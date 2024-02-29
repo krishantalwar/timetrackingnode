@@ -104,11 +104,18 @@ const verifyEmail = async (verifyEmailToken) => {
  * @param {string} newPassword
  * @returns {Promise}
  */
-const changePassword = async (user, body) => {
-    if (!(await user.isPasswordMatch(body.current_password))) {
+const changePassword = async (body) => {
+    // console.log(body)
+    // const user = await userService.getUserByEmail(email);
+    const user = await userService.getUserDetailsById(body.id);
+    // console.log(user)
+    if (!user || !(await user.isPasswordMatch(body.current_password))) {
         throw new ApiError(httpStatus.BAD_REQUEST, 'Please check your Current Password.')
     }
-    await userService.updateUserById(user._id, { password: body.new_password })
+
+    const new_password = await bcrypt.hash(body.new_password, 8);
+    // console.log(new_password);
+    await userService.updateUserById(user.userid, { password: new_password })
     return
 }
 
