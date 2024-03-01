@@ -58,6 +58,16 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
       },
+      fist_name: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+      },
+
+      last_name: {
+        type: Sequelize.STRING,
+        defaultValue: null,
+      },
+
       email: {
         type: Sequelize.STRING,
         unique: true,

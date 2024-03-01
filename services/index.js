@@ -9,6 +9,7 @@ module.exports.permissionsService = require("./permissions.service");
 module.exports.rolesService = require("./roles.service");
 module.exports.userTypeService = require("./userType.service");
 module.exports.screeneService = require("./screen.service");
+module.exports.profileService = require("./profile.service");
 
 
 // module.exports.blogService = require("./blog.service");

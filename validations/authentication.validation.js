@@ -53,6 +53,7 @@ const verifyEmail = {
 const changePassword = {
     query: Joi.object().keys({
         // token: Joi.string().required(),
+        user_id: Joi.required(),
         current_password: Joi.string().min(3).max(15).required(),
         new_password: Joi.string().min(3).max(15).required(),
         confirm_password: Joi.any()

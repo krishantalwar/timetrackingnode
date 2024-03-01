@@ -89,6 +89,29 @@ module.exports = (sequelize, Sequelize) => {
                 defaultValue: null,
             },
 
+            address: {
+                type: Sequelize.TEXT,
+                defaultValue: null,
+            },
+            phone: {
+                type: Sequelize.TEXT,
+                defaultValue: null,
+            },
+
+            city: {
+                type: Sequelize.TEXT,
+                defaultValue: null,
+            },
+            state: {
+                type: Sequelize.TEXT,
+                defaultValue: null,
+            },
+            country: {
+                type: Sequelize.TEXT,
+                defaultValue: null,
+            },
+
+
             status: {
                 type: Sequelize.INTEGER,
                 defaultValue: true,

@@ -16,7 +16,7 @@ const loginUserWithEmailAndPassword = async (email, password) => {
     const user = await userService.getUserByEmail(email);
     // console.log(user);
     // console.log(password);
-    // const asd=await bcrypt.hash(password, 8);
+    // const asd = await bcrypt.hash(password, 8);
     // console.log(asd);
     // console.log("aswwss ",await user.isPasswordMatch(password));
     // return true;  
@@ -107,8 +107,8 @@ const verifyEmail = async (verifyEmailToken) => {
 const changePassword = async (body) => {
     // console.log(body)
     // const user = await userService.getUserByEmail(email);
-    const user = await userService.getUserDetailsById(body.id);
-    // console.log(user)
+    const user = await userService.getUserDetailsById(body.user_id);
+    // console.log(user.password)
     if (!user || !(await user.isPasswordMatch(body.current_password))) {
         throw new ApiError(httpStatus.BAD_REQUEST, 'Please check your Current Password.')
     }

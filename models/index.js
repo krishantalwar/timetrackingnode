@@ -34,7 +34,7 @@ db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
 db.designation = require("./designation.model")(sequelize, Sequelize);
 db.department = require("./department.model")(sequelize, Sequelize);
 // db.permissions = require("./permissions.model")(sequelize, Sequelize);
-// db.roles = require("./roles.model")(sequelize, Sequelize);
+db.userDetail = require("./userDetail.model")(sequelize, Sequelize);
 db.userType = require("./userType.model")(sequelize, Sequelize);
 
 
@@ -73,6 +73,22 @@ db.permissions.hasOne(db.screen, {
   },
   sourceKey: 'screen_id',
   as: 'screens'
+});
+
+db.users.hasOne(db.userDetail, {
+  foreignKey: {
+    name: 'user_id'
+  },
+  sourceKey: 'userid',
+  as: 'userDetail'
+});
+
+db.userDetail.hasMany(db.permissions, {
+  foreignKey: {
+    name: 'role_id'
+  },
+  sourceKey: 'role_id',
+  as: 'user_permissions'
 });
 
 
