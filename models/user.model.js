@@ -58,7 +58,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
       },
-      fist_name: {
+      first_name: {
         type: Sequelize.STRING,
         defaultValue: null,
       },

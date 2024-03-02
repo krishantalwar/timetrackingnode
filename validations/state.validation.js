@@ -10,7 +10,7 @@ const customMessages = {
 const edit = {
     body: Joi.object().keys({
         last_name: Joi.required(),
-        first_name: Joi.required(),
+        fist_name: Joi.required(),
         email: Joi.required(),
         address: Joi.required(),
         phone: Joi.required(),

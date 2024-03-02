@@ -62,7 +62,6 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING,
                 defaultValue: null,
             },
-
             designation_id: {
                 type: Sequelize.STRING,
                 defaultValue: null,
@@ -75,7 +74,6 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING,
                 defaultValue: null,
             },
-
             department_id: {
                 type: Sequelize.STRING,
                 defaultValue: null,
@@ -88,7 +86,6 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING,
                 defaultValue: null,
             },
-
             address: {
                 type: Sequelize.TEXT,
                 defaultValue: null,
@@ -97,7 +94,6 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT,
                 defaultValue: null,
             },
-
             city: {
                 type: Sequelize.TEXT,
                 defaultValue: null,
@@ -110,8 +106,6 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.TEXT,
                 defaultValue: null,
             },
-
-
             status: {
                 type: Sequelize.INTEGER,
                 defaultValue: true,

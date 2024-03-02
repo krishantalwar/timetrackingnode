@@ -10,6 +10,8 @@ const userTypeRoute = require("./v1/userType.route");
 const screenRoute = require("./v1/screen.route");
 const permissionsRoute = require("./v1/permissions.route");
 const profileRoute = require("./v1/profile.route");
+const stateRoute = require("./v1/state.route");
+const countryRoute = require("./v1/country.route");
 
 
 const router = express.Router();
@@ -38,6 +40,14 @@ const defaultRoutes = [
   {
     path: "/roles",
     route: rolesRoute,
+  },
+  {
+    path: "/state",
+    route: stateRoute,
+  },
+  {
+    path: "/country",
+    route: countryRoute,
   },
   // {
   //   path: "/roles",

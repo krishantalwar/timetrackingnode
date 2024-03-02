@@ -16,8 +16,8 @@ let indexRouter = require('./routes');
 const { checkAuth } = require('./middleware/auth.middleware');
 
 const db = require("./models");
-// db.sequelize.sync({ alter: true })
-db.sequelize.sync()
+db.sequelize.sync({ alter: true })
+  // db.sequelize.sync()
   .then(() => {
     console.log("Synced db.");
   })

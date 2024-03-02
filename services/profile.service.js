@@ -1,7 +1,7 @@
 const db = require("../models");
-const roles = db.roles;
+const userDetail = db.userDetail;
 const User = db.users;
-const permissions = db.permissions;
+
 
 const queryRoles = async (id) => {
     const code = await User.findByPk(id,
@@ -46,9 +46,34 @@ const queryRoles = async (id) => {
 
 const saveShift = async (body) => {
 
-    // await userService.updateUserById(body.userid, { password: new_password })
-    await userService.updateUserById(body.id, body)
-    return
+    const userDetails = await userDetail.findOne({
+        where: { 'user_id': body.id },
+    })
+
+    console.log(userDetails)
+    const updateBody = {
+        address: body.address ?? "",
+        phone: body.phone ?? "",
+        city: body.city ?? "",
+        state: body.state ?? "",
+        country: body.country ?? "",
+    }
+
+    Object.assign(userDetails, updateBody);
+    await userDetails.save();
+
+
+
+    const Users = await User.findByPk(body.id);
+    console.log(Users)
+    const userupdateBody = {
+        first_name: body.first_name ?? "",
+        last_name: body.last_name ?? "",
+    }
+    Object.assign(Users, userupdateBody);
+    await Users.save();
+
+    return Users;
 }
 module.exports = {
     queryRoles,

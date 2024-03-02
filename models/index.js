@@ -37,6 +37,16 @@ db.department = require("./department.model")(sequelize, Sequelize);
 db.userDetail = require("./userDetail.model")(sequelize, Sequelize);
 db.userType = require("./userType.model")(sequelize, Sequelize);
 
+db.state = require("./state.model")(sequelize, Sequelize);
+db.country = require("./country.model")(sequelize, Sequelize);
+
+db.country.hasMany(db.state, {
+  // through: db.permissions,
+  foreignKey: 'country_id',
+  // target: "roleid",
+  // otherKey: 'role_id',
+  as: 'country_state',
+});
 
 db.roles.belongsToMany(db.screen, {
   through: db.permissions,

@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
 
     Country.init(
         {
-            countryid: {
+            id: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
