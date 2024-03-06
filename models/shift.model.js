@@ -25,31 +25,31 @@ module.exports = (sequelize, Sequelize) => {
         unique: true
       },
       start_time: {
-        type: Sequelize.TIME,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
       end_time: {
-        type: Sequelize.TIME,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
 
       break_start_time: {
-        type: Sequelize.TIME,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
       break_end_time: {
-        type: Sequelize.TIME,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
 
       overtime_start_time: {
-        type: Sequelize.TIME,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
 
 
       overtime_end_time: {
-        type: Sequelize.TIME,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
 

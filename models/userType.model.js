@@ -1,11 +1,11 @@
 const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
-    class Country extends Model {
+    class UserType extends Model {
 
     }
 
-    Country.init(
+    UserType.init(
         {
             id: {
                 type: Sequelize.INTEGER,
@@ -38,5 +38,5 @@ module.exports = (sequelize, Sequelize) => {
         }
     );
 
-    return Country;
+    return UserType;
 };

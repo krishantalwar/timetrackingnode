@@ -97,6 +97,11 @@ const getExportUsers = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const getCode = catchAsync(async (req, res) => {
+  const result = await userService.getCode();
+  res.send(result);
+});
+
 module.exports = {
   createUser,
   getUsers,
@@ -104,4 +109,5 @@ module.exports = {
   updateUser,
   deleteUser,
   getExportUsers,
+  getCode
 };

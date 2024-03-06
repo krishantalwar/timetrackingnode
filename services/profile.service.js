@@ -21,19 +21,30 @@ const queryRoles = async (id) => {
             //     }]
             // }
             // ]
-            include: [
-                'userDetail',
-                // 'user_permissions'
-            ]
+
+            // include: [{ all: true, nested: true }]
             // include: [
             //     {
-            //         model: 'permissions',
-            //         // model: 'screens',
+            //         association: [
+            //             'userDetail'
+            //         ],
+
             //         include: [
-            //             'screens'
+
+            //             {
+            //                 association: 'userRole'
+            //             },
+            //             {
+            //                 association: 'userType'
+            //             },
             //         ]
             //     }
             // ]
+
+
+
+
+
             // logging: function (str) {
             //     console.log(str)
             //     // do stuff with the sql str

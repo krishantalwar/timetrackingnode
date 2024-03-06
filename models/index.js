@@ -90,7 +90,8 @@ db.users.hasOne(db.userDetail, {
     name: 'user_id'
   },
   sourceKey: 'userid',
-  as: 'userDetail'
+  as: 'userDetail',
+
 });
 
 db.userDetail.hasMany(db.permissions, {
@@ -99,6 +100,23 @@ db.userDetail.hasMany(db.permissions, {
   },
   sourceKey: 'role_id',
   as: 'user_permissions'
+});
+
+
+db.userDetail.hasOne(db.userType, {
+  foreignKey: {
+    name: 'id'
+  },
+  sourceKey: 'user_type',
+  as: 'userType'
+});
+
+db.userDetail.hasOne(db.roles, {
+  foreignKey: {
+    name: 'roleid'
+  },
+  sourceKey: 'role_id',
+  as: 'userRole'
 });
 
 

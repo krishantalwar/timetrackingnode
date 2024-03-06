@@ -29,10 +29,10 @@ const defaultRoutes = [
     path: "/profile",
     route: profileRoute,
   },
-  // {
-  //   path: "/users",
-  //   route: userRoute,
-  // },
+  {
+    path: "/users",
+    route: userRoute,
+  },
   {
     path: "/screens",
     route: screenRoute,

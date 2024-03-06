@@ -354,6 +354,11 @@ const getUserByEmail = async (email) => {
   //  return await User.findAll();
 };
 
+const getCode = async () => {
+  const code = await User.count();
+  return { code: "EM" + code };
+};
+
 
 module.exports = {
   createUser,
@@ -367,5 +372,6 @@ module.exports = {
   fetchUserByEmail,
   saveSocialUser,
   updateSocialUser,
-  getUserByEmail
+  getUserByEmail,
+  getCode
 };

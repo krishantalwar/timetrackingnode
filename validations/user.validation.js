@@ -4,7 +4,7 @@ const { password, objectId } = require('./custom.validation');
 const createUser = {
     body: Joi.object().keys({
         email: Joi.string().required().email(),
-        user_info: Joi.object().required(),
+        // user_info: Joi.object().required(),
         status: Joi.number().required(),
     }),
 };
