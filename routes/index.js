@@ -12,6 +12,8 @@ const permissionsRoute = require("./v1/permissions.route");
 const profileRoute = require("./v1/profile.route");
 const stateRoute = require("./v1/state.route");
 const countryRoute = require("./v1/country.route");
+const jobRoute = require("./v1/job.route");
+
 
 
 const router = express.Router();
@@ -69,6 +71,12 @@ const defaultRoutes = [
     path: "/shiftmaster",
     route: shiftMasterRoute,
   },
+
+  {
+    path: "/job",
+    route: jobRoute,
+  },
+
   // {
   //   path: "/email-templates",
   //   route: emailTemplateRoute,
@@ -85,6 +93,7 @@ const defaultRoutes = [
 // ];
 
 defaultRoutes.forEach((route) => {
+
   router.use(route.path, route.route);
 });
 

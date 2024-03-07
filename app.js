@@ -43,6 +43,7 @@ app.use(function (req, res, next) {
   //   "Access-Control-Allow-Headers",
   //   "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   // );
+
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PATCH, PUT, DELETE, OPTIONS"
@@ -70,7 +71,7 @@ app.use('/', indexRouter);
 // v1 api routes
 // app.use('/v1', routes);
 
-app.use(checkAuth);
+// app.use(checkAuth);
 // app.use('/myspots', myspotsRouter);
 
 

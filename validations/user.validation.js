@@ -4,8 +4,21 @@ const { password, objectId } = require('./custom.validation');
 const createUser = {
     body: Joi.object().keys({
         email: Joi.string().required().email(),
-        // user_info: Joi.object().required(),
-        status: Joi.number().required(),
+        // status: Joi.number().required(),
+        employe_code: Joi.string().required(),
+        first_name: Joi.string().required(),
+        last_name: Joi.string().required(),
+        country: Joi.string().required(),
+        state: Joi.string().required(),
+        date_of_birth: Joi.string().required(),
+        date_of_joining: Joi.string().required(),
+        department: Joi.string().required(),
+        designation: Joi.string().required(),
+        reporting_manager: Joi.string().required(),
+        shift_allocation: Joi.string().required(),
+        role_assigned: Joi.string().required(),
+        upload_documents: Joi.string().required(),
+        upload_document: Joi.string().required(),
     }),
 };
 

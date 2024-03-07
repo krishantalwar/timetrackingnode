@@ -10,6 +10,9 @@ const saveShift = catchAsync(async (req, res) => {
 });
 
 const getShift = catchAsync(async (req, res) => {
+  console.log(req);
+  console.log(req.cookies);
+
   //   const filter = pick(req.query, ["search"]);
   const result = await departmentService.queryShift();
   res.send(result);

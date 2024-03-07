@@ -7,59 +7,83 @@ const {
   S3Bucket,
   emailTemplateService,
   handleBarService,
+  emailService,
 } = require("../services");
 const { generateRandamKeyCode } = require("../utills/common");
 // const { updateUserResetLinkData } = require("../queries/user_queries");
 const { mailerTransporter } = require("../utills/mailer_transporter");
+const multer = require("multer");
+
 
 const createUser = catchAsync(async (req, res) => {
-  const user = await userService.createUser(req.body);
 
-  //delete after new email service create
-  const key = generateRandamKeyCode();
+  console.log(req)
+  console.log(req.files)
 
-  const emailTemplate = await emailTemplateService.getEmailTemplateByAction(
-    "CREATE_PASSWORD"
-  );
+  // const storage = multer.diskStorage({
+  //   destination: function (req, file, cb) {
+  //     cb(null, 'uploads//uploads')
+  //   },
+  //   filename: function (req, file, cb) {
+  //     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+  //     cb(null, file.fieldname + '-' + uniqueSuffix)
+  //   }
+  // })
 
-  updateUserResetLinkData({ resetLink: key, email: user.email }).then(
-    async (data) => {
-      if (!!emailTemplate) {
-        var data = {
-          link: `${process.env.FRONTEND_BASE_URL}/create-password?key=${key}&email=${user.email}`,
-        };
+  // const upload = multer({ storage: storage })
 
-        const plainHtml = await handleBarService.getPlainHtml(
-          emailTemplate.email_body,
-          data
-        );
+  // upload.array("upload_documents", 10)
 
-        let info = {
-          from: "<cgt.pawan.test@gmail.com>", // sender address
-          to: `${user.email}`, // list of receivers
-          subject: emailTemplate?.email_subject, // Subject line
-          // text: "Hello world?", // plain text body
-          html: plainHtml, // html body
-        };
-        mailerTransporter().sendMail(info, (error, body) => {
-          if (error) {
-            return res
-              .status(error_code.badRequest)
-              .send({ message: error.message, status: error_code.badRequest });
-          }
-          // if (body) {
-          //     // console.log(body)
-          //     res.status(error_code.success).send({ message: user_success_messages.reset_password_link_sent, status: error_code.success })
-          // }
-        });
-      }
-    },
-    (err) => {
-      return res.status(error_code.serverSideError).send({ error: err });
-    }
-  );
+  // await emailService.sendResetPasswordEmail('mygangkrish@gmail.com', 'asdasd');
+  res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
 
-  res.status(httpStatus.CREATED).send(user);
+  // const user = await userService.createUser(req.body);
+
+  // //delete after new email service create
+  // const key = generateRandamKeyCode();
+
+  // const emailTemplate = await emailTemplateService.getEmailTemplateByAction(
+  //   "CREATE_PASSWORD"
+  // );
+
+  // updateUserResetLinkData({ resetLink: key, email: user.email }).then(
+  //   async (data) => {
+  //     if (!!emailTemplate) {
+  //       var data = {
+  //         link: `${process.env.FRONTEND_BASE_URL}/create-password?key=${key}&email=${user.email}`,
+  //       };
+
+  //       const plainHtml = await handleBarService.getPlainHtml(
+  //         emailTemplate.email_body,
+  //         data
+  //       );
+
+  //       let info = {
+  //         from: "<cgt.pawan.test@gmail.com>", // sender address
+  //         to: `${user.email}`, // list of receivers
+  //         subject: emailTemplate?.email_subject, // Subject line
+  //         // text: "Hello world?", // plain text body
+  //         html: plainHtml, // html body
+  //       };
+  //       mailerTransporter().sendMail(info, (error, body) => {
+  //         if (error) {
+  //           return res
+  //             .status(error_code.badRequest)
+  //             .send({ message: error.message, status: error_code.badRequest });
+  //         }
+  //         // if (body) {
+  //         //     // console.log(body)
+  //         //     res.status(error_code.success).send({ message: user_success_messages.reset_password_link_sent, status: error_code.success })
+  //         // }
+  //       });
+  //     }
+  //   },
+  //   (err) => {
+  //     return res.status(error_code.serverSideError).send({ error: err });
+  //   }
+  // );
+
+  // res.status(httpStatus.CREATED).send(user);
 });
 
 const getUsers = catchAsync(async (req, res) => {

@@ -38,9 +38,6 @@ module.exports = (sequelize, Sequelize) => {
       return bcrypt.compare(password, user.password);
     };
 
-
-
-
   }
 
   User.init(

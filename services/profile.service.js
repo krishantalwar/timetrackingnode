@@ -21,29 +21,41 @@ const queryRoles = async (id) => {
             //     }]
             // }
             // ]
-            include: [
-                'userDetail',
-                // 'user_permissions'
-            ]
+            // include: [
+            //     'userDetail',
+            //     // 'user_permissions'
+            // ]
 
             // include: [{ all: true, nested: true }]
-            // include: [
-            //     {
-            //         association: [
-            //             'userDetail'
-            //         ],
+            include: [
+                {
+                    association: 'userDetail',
+                    include: [
 
-            //         include: [
+                        {
+                            association: 'userRole',
+                            include: [
+                                {
+                                    association: 'permissions',
+                                    include: [
 
-            //             {
-            //                 association: 'userRole'
-            //             },
-            //             {
-            //                 association: 'userType'
-            //             },
-            //         ]
-            //     }
-            // ]
+                                        {
+                                            association: 'screens'
+                                        },
+                                    ]
+                                },
+                            ]
+
+
+                        },
+                        {
+                            association: 'userType'
+                        },
+
+
+                    ]
+                }
+            ]
 
 
             // include: [

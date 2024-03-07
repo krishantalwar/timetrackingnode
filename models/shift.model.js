@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
         //  allowNull: false,
-        unique: true
+        // unique: true
       },
       name: {
         type: Sequelize.STRING,

@@ -1,5 +1,6 @@
 const { Model, Op } = require("sequelize");
 
+
 module.exports = (sequelize, Sequelize) => {
   class Department extends Model {
 
@@ -42,6 +43,12 @@ module.exports = (sequelize, Sequelize) => {
       },
     },
     {
+      // defaultScope: {
+      //   where: {
+      //     active: true,
+      //     compnay_id: user_id
+      //   }
+      // },
       sequelize,
       timestamps: true,
       paranoid: true,

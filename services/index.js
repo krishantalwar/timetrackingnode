@@ -12,11 +12,11 @@ module.exports.screeneService = require("./screen.service");
 module.exports.profileService = require("./profile.service");
 module.exports.stateService = require("./state.service");
 module.exports.countryService = require("./country.service");
-
+module.exports.emailService = require("./email.service");
 
 // module.exports.blogService = require("./blog.service");
 // module.exports.blogService = require("./blog.service");
-// module.exports.emailTemplateService = require("./emailTemplate.service");
+module.exports.emailTemplateService = require("./emailTemplate.service");
 // module.exports.generalSettingService = require("./generalSetting.service");
 // module.exports.spotService = require("./spot.service");
 // module.exports.cmsPageService = require("./cmsPage.service");
