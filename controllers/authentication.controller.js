@@ -14,11 +14,18 @@ const login = catchAsync(async (req, res) => {
     const { email, password } = req.body;
     const user = await authService.loginUserWithEmailAndPassword(email, password);
     const tokens = await tokenService.generateAuthTokens(user);
+    // console.log("email");
     // console.log(email);
     // console.log(password);
     // console.log(tokens);
-    res.cookie('ssstoken', "sss", { path: "/", sameSite: 'strict', Priority: "High", httpOnly: true, secure: true, signed: true })
-        .cookie('company', "ddsss", { path: "/", sameSite: 'strict', Priority: "High", signed: true, httpOnly: true, secure: true })
+    res.cookie('ssstoken', "sss", {
+        path: "/", sameSite: 'strict', Priority: "High",
+        // httpOnly: true, secure: true, signed: true
+    })
+        .cookie('company', "ddsss", {
+            path: "/", sameSite: 'strict', Priority: "High",
+            // signed: true, httpOnly: true, secure: true
+        })
         .send({ user, tokens });
 });
 
