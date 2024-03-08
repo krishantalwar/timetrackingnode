@@ -37,12 +37,14 @@ const sendEmail = async (to, subject, text) => {
  * @returns {Promise}
  */
 const sendResetPasswordEmail = async (to, token) => {
-    const subject = 'Reset password';
+    const subject = 'Welcome Email';
     // replace this url with the link to the reset password page of your front-end app
-    const resetPasswordUrl = `http://quickspot.com/reset-password?token=${token}`;
+    const resetPasswordUrl = token;
     const text = `Dear user,
-To reset your password, click on this link: ${resetPasswordUrl}
-If you did not request any password resets, then ignore this email.`;
+    <br>
+    Your login Passowrd is ${resetPasswordUrl}
+
+    `;
     await sendEmail(to, subject, text);
 };
 

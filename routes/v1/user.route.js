@@ -21,7 +21,7 @@ router
     .route('/create')
     .post(
         //auth('manageUsers'), 
-        // validate(userValidation.createUser),
+        validate(userValidation.createUser),
         userController.createUser)
 
 router

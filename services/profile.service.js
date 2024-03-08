@@ -83,7 +83,7 @@ const saveShift = async (body) => {
         where: { 'user_id': body.id },
     })
 
-    console.log(userDetails)
+    // console.log(userDetails)
     const updateBody = {
         address: body.address ?? "",
         phone: body.phone ?? "",
@@ -98,7 +98,7 @@ const saveShift = async (body) => {
 
 
     const Users = await User.findByPk(body.id);
-    console.log(Users)
+    // console.log(Users)
     const userupdateBody = {
         first_name: body.first_name ?? "",
         last_name: body.last_name ?? "",

@@ -14,6 +14,8 @@ module.exports = (sequelize, Sequelize) => {
       return !!user;
     };
 
+
+
     static isNmailTakenWith = async (email, excludeUserId) => {
       const user = await User.findOne({
         where: {
@@ -36,6 +38,16 @@ module.exports = (sequelize, Sequelize) => {
       const user = this;
       // console.log(user);
       return bcrypt.compare(password, user.password);
+    };
+
+    static isEmailTakenWithEmail = async (email, excludeUserId) => {
+      const user = await User.findOne({
+        where: {
+          email: email,
+        },
+        raw: true,
+      });
+      return !!user;
     };
 
   }

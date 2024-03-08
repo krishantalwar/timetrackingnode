@@ -3,7 +3,7 @@ generateRandamPromoCode = () => {
     const vocherList = voucher_codes.generate({
         length: process.env.promoCodeLength || 5,
         count: 1,
-        charset: "0123456789"
+        charset: "AaBACcyYUupPQqWwEeRrTtMmNnVvLlKkSsDdGgHhJj0123456789"
     });
     return vocherList[0]
 };
@@ -25,7 +25,7 @@ generateRandamKeyCode = () => {
     return vocherList[0]
 };
 
-module.exports= {
+module.exports = {
     generateRandamPromoCode,
     generateRandamOTPCode,
     generateRandamKeyCode

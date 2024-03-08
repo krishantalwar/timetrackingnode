@@ -10,7 +10,7 @@ const User = db.users;
 const Spot = db.spots;
 const Op = db.Sequelize.Op;
 const Sequelize = db.Sequelize;
-
+const userDetail = db.userDetail;
 /**
  * Create a user
  * @param {Object} userBody
@@ -18,20 +18,48 @@ const Sequelize = db.Sequelize;
  */
 const createUser = async (userBody, headers) => {
   // console.log(User);
+
   if (await User.isEmailTakenWithEmail(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken.");
   }
 
-  if (
-    userBody?.user_info?.cpfNumber &&
-    (await User.isCpfNumberTaken(userBody.user_info.cpfNumber))
-  ) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "CPF / CNPJ# already taken.");
-  }
+  // if (
+  //   userBody?.user_info?.cpfNumber &&
+  //   (await User.isCpfNumberTaken(userBody.user_info.cpfNumber))
+  // ) {
+  //   throw new ApiError(httpStatus.BAD_REQUEST, "CPF / CNPJ# already taken.");
+  // }
 
   userBody.email = userBody.email.toLowerCase();
   // userBody = await bcryptPassword(userBody);
-  const user = await User.create(userBody);
+  let userdetailbody = {
+    "user_code": userBody.employe_code,
+    "email": userBody.email,
+    "first_name": userBody.first_name,
+    "last_name": userBody.last_name,
+  }
+  const user = await User.create(userdetailbody);
+  console.log("asdasd", user)
+
+  console.log("asdasd", user.userid)
+
+  if (user) {
+    let detailbody = {
+      "shift_id": userBody.shift_allocation,
+      "role_id": userBody.role_assigned,
+      "reporting_manager_id": userBody.reporting_manager,
+      "user_id": user.userid,
+      "department_id": userBody.department,
+      "designation_id": userBody.designation,
+      "date_of_birth": userBody.date_of_birth,
+      "date_of_joining": userBody.date_of_joining,
+      "state": userBody.state,
+      "country": userBody.country,
+    }
+    const userdetail = await userDetail.create(detailbody);
+  }
+
+
   return user;
 };
 
@@ -175,12 +203,12 @@ const checkEmailExist = async (email, excludeUserId) => {
  */
 const updateUserById = async (userId, updateBody) => {
   const user = await getUserById(userId);
-  console.log(user)
+  // console.log(user)
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found");
   }
 
-  if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+  if (updateBody?.email && (await User.isEmailTaken(updateBody?.email, userId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken");
   }
   // if (
@@ -196,7 +224,7 @@ const updateUserById = async (userId, updateBody) => {
   if (updateBody?.email) {
     updateBody.email = updateBody?.email?.toLowerCase();
   }
-  console.log(updateBody)
+  // console.log(updateBody)
   Object.assign(user, updateBody);
   await user.save();
   return user;

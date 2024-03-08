@@ -13,12 +13,12 @@ const { generateRandamKeyCode } = require("../utills/common");
 // const { updateUserResetLinkData } = require("../queries/user_queries");
 const { mailerTransporter } = require("../utills/mailer_transporter");
 const multer = require("multer");
-
+const bcrypt = require('bcryptjs');
 
 const createUser = catchAsync(async (req, res) => {
 
-  console.log(req)
-  console.log(req.files)
+  // console.log(req.body)
+  // console.log(req.files)
 
   // const storage = multer.diskStorage({
   //   destination: function (req, file, cb) {
@@ -34,13 +34,11 @@ const createUser = catchAsync(async (req, res) => {
 
   // upload.array("upload_documents", 10)
 
-  // await emailService.sendResetPasswordEmail('mygangkrish@gmail.com', 'asdasd');
-  res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
 
-  // const user = await userService.createUser(req.body);
+
 
   // //delete after new email service create
-  // const key = generateRandamKeyCode();
+
 
   // const emailTemplate = await emailTemplateService.getEmailTemplateByAction(
   //   "CREATE_PASSWORD"
@@ -83,7 +81,27 @@ const createUser = catchAsync(async (req, res) => {
   //   }
   // );
 
-  // res.status(httpStatus.CREATED).send(user);
+
+  const user = await userService.createUser(req.body);
+
+  // console.log(user)
+  // console.log(user.userid)
+  const key = generateRandamKeyCode();
+
+  const asd = await bcrypt.hash(key, 8);
+
+  await userService.updateUserById(user.userid, {
+    "password": asd
+  });
+
+  if (user) {
+    await emailService.sendResetPasswordEmail(user.email, key);
+    // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+  }
+
+  // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+
+  res.status(httpStatus.CREATED).send(user);
 });
 
 const getUsers = catchAsync(async (req, res) => {

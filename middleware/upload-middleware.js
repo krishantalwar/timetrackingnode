@@ -3,7 +3,7 @@ const multer = require("multer");
 const storage = function () {
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "assets/images/");
+      cb(null, "uploads/images/");
     },
     filename: function (req, file, cb) {
       cb(null, Date.now() + "-" + file.originalname);
@@ -36,6 +36,21 @@ const allowedDocs = function (req, file, cb) {
 };
 
 module.exports = {
+
+  uploadImages: (req, res, next) => {
+    const upload = multer({
+      storage: storage(),
+      fileFilter: allowedImages,
+      limits: { fileSize: 3145728 },
+    }).array("upload_documents");
+    upload(req, res, function (err, result) {
+      if (err) {
+        return res.status(400).send({ message: "Error in uploading the image" })
+      }
+      next();
+    });
+  },
+
   uploadImage: (req, res, next) => {
     const upload = multer({
       storage: storage(),
