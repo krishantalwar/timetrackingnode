@@ -17,8 +17,8 @@ const createUser = {
         reporting_manager: Joi.number().integer().required(),
         shift_allocation: Joi.number().integer().required(),
         role_assigned: Joi.number().integer().required(),
-        upload_documents: Joi.array(),
-        upload_document: Joi.string().required(),
+        // upload_documents: Joi.array(),
+        // upload_document: Joi.required(),
     }),
 };
 

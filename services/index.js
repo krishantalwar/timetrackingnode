@@ -14,6 +14,9 @@ module.exports.stateService = require("./state.service");
 module.exports.countryService = require("./country.service");
 module.exports.emailService = require("./email.service");
 
+module.exports.jobService = require("./job.service");
+
+
 // module.exports.blogService = require("./blog.service");
 // module.exports.blogService = require("./blog.service");
 module.exports.emailTemplateService = require("./emailTemplate.service");

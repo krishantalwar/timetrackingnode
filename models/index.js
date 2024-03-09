@@ -4,20 +4,23 @@ const logger = (message) => {
   console.log(message);
 };
 
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
-  // operatorsAliases: false,
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle,
-  },
-  // schema:  dbConfig.DB,
-  logging: logger,
-  // searchPath:  dbConfig.DB,
-});
+const
+  sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+    maxFields: 1000,
+    host: dbConfig.HOST,
+    dialect: dbConfig.dialect,
+    // operatorsAliases: false,
+    pool: {
+      max: dbConfig.pool.max,
+
+      min: dbConfig.pool.min,
+      acquire: dbConfig.pool.acquire,
+      idle: dbConfig.pool.idle,
+    },
+    // schema:  dbConfig.DB,
+    logging: logger,
+    // searchPath:  dbConfig.DB,
+  });
 
 // console.log(sequelize)
 // console.log(Sequelize)
@@ -26,19 +29,25 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 // db.lookups = require("./lookup.model")(sequelize, Sequelize);
 db.tokens = require("./token.model")(sequelize, Sequelize);
-db.users = require("./user.model")(sequelize, Sequelize);
-db.roles = require("./roles.model")(sequelize, Sequelize);
-db.screen = require("./screen.model")(sequelize, Sequelize);
-db.permissions = require("./permissions.model.js")(sequelize, Sequelize);
+db.job = require("./job.model")(sequelize, Sequelize);
+
+
 db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
+
 db.designation = require("./designation.model")(sequelize, Sequelize);
 db.department = require("./department.model")(sequelize, Sequelize);
-// db.permissions = require("./permissions.model")(sequelize, Sequelize);
 db.userDetail = require("./userDetail.model")(sequelize, Sequelize);
 db.userType = require("./userType.model")(sequelize, Sequelize);
 
 db.state = require("./state.model")(sequelize, Sequelize);
 db.country = require("./country.model")(sequelize, Sequelize);
+
+
+db.users = require("./user.model")(sequelize, Sequelize);
+db.roles = require("./roles.model")(sequelize, Sequelize);
+db.screen = require("./screen.model")(sequelize, Sequelize);
+db.permissions = require("./permissions.model.js")(sequelize, Sequelize);
+
 
 db.country.hasMany(db.state, {
   // through: db.permissions,

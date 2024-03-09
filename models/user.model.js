@@ -60,25 +60,25 @@ module.exports = (sequelize, Sequelize) => {
         autoIncrement: true,
       },
       user_code: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
       username: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
       first_name: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
 
       last_name: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         defaultValue: null,
       },
 
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         unique: true,
         isEmail: true,
         allowNull: false,
@@ -86,17 +86,16 @@ module.exports = (sequelize, Sequelize) => {
       password: {
         type: Sequelize.STRING,
         // defaultValue: null,
-        set(value) {
-          if (value != "" || value != null || value != undefined) {
-            this.setDataValue('password', (value));
-          } else {
-            this.setDataValue('password', hash(this.username + value));
-          }
-          // Storing passwords in plaintext in the database is terrible.
-          // Hashing the value with an appropriate cryptographic hash function is better.
-          // Using the username as a salt is better.
-
-        }
+        // set(value) {
+        //   if (value != "" || value != null || value != undefined) {
+        //     this.setDataValue('password', (value));
+        //   } else {
+        //     this.setDataValue('password', hash(this.username + value));
+        //   }
+        //   // Storing passwords in plaintext in the database is terrible.
+        //   // Hashing the value with an appropriate cryptographic hash function is better.
+        //   // Using the username as a salt is better.
+        // }
       },
 
       // user_referral_code: {
