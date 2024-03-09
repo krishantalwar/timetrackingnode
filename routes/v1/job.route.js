@@ -1,29 +1,29 @@
-const express = require('express');
-const { validate, validateAsync } = require('../../middleware/validate');
-const JobValidation = require('../../validations/job.validation');
-const JobController = require('../../controllers/job.controller');
+const express = require("express");
+const { validate, validateAsync } = require("../../middleware/validate");
+const JobValidation = require("../../validations/job.validation");
+const JobController = require("../../controllers/job.controller");
 // const authentication = require('../../middleware/authentication');
 
 const router = express.Router();
 
+router.post("/add", validateAsync(JobValidation.add), JobController.saveShift);
+router.get("/code", JobController.getCode);
 
-router.post('/add', validateAsync(JobValidation.add), JobController.saveShift);
-router.get('/code', JobController.getCode);
+router.get(
+  "/",
+  // validate(JobValidation.getShift),
+  JobController.getShift
+);
 
-router.get('/',
-    // validate(JobValidation.getShift),
-    JobController.getShift);
+router.post("/edit/:id", validate(JobController.edit), JobController.editShift);
+
+router.get(
+  "/delete/:id",
+  // validateAsync(shiftMasterValidation.getDetail),1
+  JobController.deletShift
+);
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
 
 // const express = require('express');
 // const { validate, validateAsync } = require('../../middleware/validate');
@@ -49,4 +49,3 @@ module.exports = router;
 //     shiftMasterController.deletShift);
 // router.get('/', validate(shiftMasterValidation.getShift), shiftMasterController.getShift);
 // module.exports = router;
-
