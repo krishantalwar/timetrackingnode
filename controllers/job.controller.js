@@ -41,8 +41,18 @@ const getDetailsById = catchAsync(async (req, res) => {
 const editShift = catchAsync(async (req, res) => {
     console.log(req.body);
     console.log(req.params.id);
+    const body = {
+        "job_code": req.body.job_code,
+        "desciption": req.body.job_description,
+        "name": req.body.job_name,
+        "country": req.body.location,
+        "state": req.body.sub_location,
+        "rating": req.body.rating,
+        "jobid": req.body.jobid,
 
-    const shift = await jobService.editShift(req.body, req.params.id);
+    }
+
+    const shift = await jobService.editShift(body, req.params.id);
     res.send(shift);
     // res.send({ "sdasd": "asdas" });
 });

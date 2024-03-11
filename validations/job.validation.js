@@ -24,11 +24,13 @@ const add = {
 
 const edit = {
     body: Joi.object().keys({
-        rating: Joi.required(),
-        sub_location: Joi.required(),
-        location: Joi.required(),
-        job_description: Joi.required(),
-        job_code: Joi.required(),
+        rating: Joi.number().integer().required(),
+        sub_location: Joi.number().integer().required(),
+        location: Joi.number().integer().required(),
+        job_description: Joi.string().required(),
+        job_name: Joi.string().required(),
+        job_code: Joi.string().required(),
+        jobid: Joi.number().integer().required(),
 
     })
     //     .messages({

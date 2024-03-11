@@ -10,17 +10,20 @@ router.post("/add", validateAsync(JobValidation.add), JobController.saveShift);
 router.get("/code", JobController.getCode);
 
 router.get(
-  "/",
-  // validate(JobValidation.getShift),
-  JobController.getShift
+    "/",
+    // validate(JobValidation.getShift),
+    JobController.getShift
 );
 
-router.post("/edit/:id", validate(JobController.edit), JobController.editShift);
+router.get('/:id',
+    // validate(shiftMasterValidation.getDetail),
+    JobController.getDetailsById);
+router.post("/edit/:id", validate(JobValidation.edit), JobController.editShift);
 
 router.get(
-  "/delete/:id",
-  // validateAsync(shiftMasterValidation.getDetail),1
-  JobController.deletShift
+    "/delete/:id",
+    // validateAsync(shiftMasterValidation.getDetail),1
+    JobController.deletShift
 );
 
 module.exports = router;
