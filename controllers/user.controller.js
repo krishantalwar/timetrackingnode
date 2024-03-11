@@ -18,7 +18,7 @@ const bcrypt = require('bcryptjs');
 const createUser = catchAsync(async (req, res) => {
 
   // console.log(req.body)
-  // console.log(req.files)
+  console.log(req?.files)
 
   // const storage = multer.diskStorage({
   //   destination: function (req, file, cb) {
@@ -82,26 +82,29 @@ const createUser = catchAsync(async (req, res) => {
   // );
 
 
-  const user = await userService.createUser(req.body);
 
   // console.log(user)
   // console.log(user.userid)
-  const key = generateRandamKeyCode();
 
-  const asd = await bcrypt.hash(key, 8);
+  // add user comment
+  // const user = await userService.createUser(req.body);
 
-  await userService.updateUserById(user.userid, {
-    "password": asd
-  });
+  // const key = generateRandamKeyCode();
 
-  if (user) {
-    await emailService.sendResetPasswordEmail(user.email, key);
-    // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
-  }
+  // const asd = await bcrypt.hash(key, 8);
+
+  // await userService.updateUserById(user.userid, {
+  //   "password": asd
+  // });
+
+  // if (user) {
+  //   await emailService.sendResetPasswordEmail(user.email, key);
+  //   // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+  // }
 
   // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
-
-  res.status(httpStatus.CREATED).send(user);
+  const files = req?.files ?? {};
+  res.status(httpStatus.CREATED).send(files);
 });
 
 const getUsers = catchAsync(async (req, res) => {
