@@ -66,7 +66,29 @@ const deletShift = catchAsync(async (req, res) => {
     res.status(httpStatus.OK).send({ "success": "success" });
 });
 
+const assignedJob = catchAsync(async (req, res) => {
+    // console.log(req.body);
+    // console.log(req.params.id);
 
+    const body = {
+        "job_code": req.body.job_code,
+        "job_id": req.body.job_id,
+        "user_id": req.body.user_id,
+        "job_name": req.body.job_name,
+    }
+    const shift = await jobService.assignedJob(body);
+    res.send(shift);
+    // res.send({ "sdasd": "asdas" });
+});
+
+
+const getuserjob = catchAsync(async (req, res) => {
+    // console.log(req);
+    // console.log(req.params);
+    // console.log(req.query);
+    const result = await jobService.getuserjob(req.params.id);
+    res.send(result);
+});
 
 module.exports = {
     saveShift,
@@ -74,5 +96,7 @@ module.exports = {
     getDetailsById,
     getCode,
     editShift,
-    deletShift
+    deletShift,
+    assignedJob,
+    getuserjob
 };

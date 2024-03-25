@@ -20,9 +20,8 @@ module.exports = (sequelize, Sequelize) => {
       },
       name: {
         type: Sequelize.STRING,
-
         allowNull: false,
-        unique: true
+        // unique: true
       },
       start_time: {
         type: Sequelize.TEXT,

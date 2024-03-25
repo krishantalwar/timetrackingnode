@@ -26,6 +26,16 @@ router.get(
     JobController.deletShift
 );
 
+
+router.post('/assignedjob/:id',
+    // validate(shiftMasterValidation.getDetail),
+    JobController.assignedJob);
+
+// userjob
+router.get('/userjob/:id',
+    // validate(shiftMasterValidation.getDetail),
+    JobController.getuserjob);
+
 module.exports = router;
 
 // const express = require('express');

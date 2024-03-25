@@ -1,5 +1,6 @@
 const db = require("../models");
 const Job = db.job;
+const UserJobs = db.user_jobs;
 
 const saveShift = async (userBody) => {
     console.log(userBody);
@@ -74,6 +75,21 @@ const deletShift = async (id) => {
     return shift;
 };
 
+const assignedJob = async (userBody) => {
+    // console.log(userBody);
+    const user = await UserJobs.create(userBody);
+    return user;
+};
+
+const getuserjob = async (userBody) => {
+    // console.log(userBody);
+    const user = await UserJobs.findAll({
+        where: { user_id: userBody },
+        include: "job"
+    });
+    return user;
+};
+
 module.exports = {
     saveShift,
     queryShift,
@@ -81,4 +97,6 @@ module.exports = {
     getCode,
     getDetailsById,
     deletShift,
+    assignedJob,
+    getuserjob
 };

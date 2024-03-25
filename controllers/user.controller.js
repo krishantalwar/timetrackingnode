@@ -17,8 +17,13 @@ const bcrypt = require('bcryptjs');
 
 const createUser = catchAsync(async (req, res) => {
 
-  // console.log(req.body)
+  // console.log(req)
+  console.log(req.body)
   console.log(req?.files)
+  // console.log(req?.file)
+
+  // console.log(req?.upload_document)
+  // console.log(req?.upload_documents)
 
   // const storage = multer.diskStorage({
   //   destination: function (req, file, cb) {
@@ -87,30 +92,31 @@ const createUser = catchAsync(async (req, res) => {
   // console.log(user.userid)
 
   // add user comment
-  const user = await userService.createUser(req.body);
+  // const user = await userService.createUser(req.body);
 
-  const key = generateRandamKeyCode();
+  // const key = generateRandamKeyCode();
 
-  const asd = await bcrypt.hash(key, 8);
+  // const asd = await bcrypt.hash(key, 8);
 
-  await userService.updateUserById(user.userid, {
-    "password": asd
-  });
+  // await userService.updateUserById(user.userid, {
+  //   "password": asd
+  // });
 
-  if (user) {
-    await emailService.sendResetPasswordEmail(user.email, key);
-    // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
-  }
+  // if (user) {
+  //   await emailService.sendResetPasswordEmail(user.email, key);
+  //   // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+  // }
 
   // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
-  // const files = req?.files ?? {};
-  res.status(httpStatus.CREATED).send(user);
+  const files = req?.files ?? {};
+  res.status(httpStatus.CREATED).send(files);
 });
 
 const getUsers = catchAsync(async (req, res) => {
   const filter = pick(req.query, ["search"]);
   const options = pick(req.query, ["sortBy", "limit", "page"]);
   const result = await userService.queryUsers(filter, options);
+  console.log(result)
   res.send(result);
 });
 

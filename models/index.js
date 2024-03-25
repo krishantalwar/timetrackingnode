@@ -48,6 +48,38 @@ db.roles = require("./roles.model")(sequelize, Sequelize);
 db.screen = require("./screen.model")(sequelize, Sequelize);
 db.permissions = require("./permissions.model.js")(sequelize, Sequelize);
 
+
+db.user_jobs = require("./user_jobs.model.js")(sequelize, Sequelize);
+
+
+db.users.hasMany(db.user_jobs, {
+  // through: db.permissions,
+  foreignKey: 'user_id',
+  // target: "roleid",
+  // otherKey: 'role_id',
+  as: 'jobs',
+});
+
+db.user_jobs.hasOne(db.users, {
+  // through: db.permissions,
+  foreignKey: 'userid',
+  // target: "roleid",
+  // otherKey: 'role_id',
+  as: 'user',
+});
+
+db.user_jobs.hasOne(db.job, {
+  // through: db.permissions,
+  // foreignKey: 'jobid',
+  foreignKey: {
+    name: 'jobid'
+  },
+  sourceKey: 'job_id',
+  // target: "roleid",
+  // otherKey: 'role_id',
+  as: 'job',
+});
+
 db.job.hasOne(db.country, {
   // through: db.permissions,
   // foreignKey: 'roleid',
@@ -57,6 +89,7 @@ db.job.hasOne(db.country, {
   sourceKey: 'country',
   as: 'job_country'
 });
+
 db.job.hasOne(db.state, {
   // through: db.permissions,
   // foreignKey: 'roleid',
