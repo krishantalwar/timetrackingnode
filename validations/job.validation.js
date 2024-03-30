@@ -16,6 +16,7 @@ const add = {
         job_description: Joi.string().required(),
         job_name: Joi.string().required(),
         job_code: Joi.string().required(),
+        job_rate:Joi.string().required(),
     })
     //     .messages({
     // 'nameTaken.unique': 'Name is already taken.', // Define the error message for 'nameTaken.unique'

@@ -39,6 +39,10 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING,
                 defaultValue: null,
             },
+            job_rate: {
+                type: Sequelize.STRING,
+                defaultValue: null,
+            },
             start_date: {
                 type: Sequelize.STRING,
                 defaultValue: null,

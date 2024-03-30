@@ -6,6 +6,7 @@ const createUser = {
         email: Joi.string().required().email(),
         // status: Joi.number().required(),
         employe_code: Joi.string().required(),
+        SSN:Joi.string().required(),
         first_name: Joi.string().required(),
         last_name: Joi.string().required(),
         country: Joi.number().integer().required(),

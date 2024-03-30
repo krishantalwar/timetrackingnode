@@ -11,6 +11,7 @@ const saveShift = catchAsync(async (req, res) => {
         "country": req.body.location,
         "state": req.body.sub_location,
         "rating": req.body.rating,
+        "job_rate":req.body.job_rate,
 
     }
     // console.log(req.body);
@@ -49,6 +50,7 @@ const editShift = catchAsync(async (req, res) => {
         "state": req.body.sub_location,
         "rating": req.body.rating,
         "jobid": req.body.jobid,
+        "job_rate":req.body.job_rate,
 
     }
 
@@ -75,6 +77,7 @@ const assignedJob = catchAsync(async (req, res) => {
         "job_id": req.body.job_id,
         "user_id": req.body.user_id,
         "job_name": req.body.job_name,
+        "job_rate":req.body.job_rate,
     }
     const shift = await jobService.assignedJob(body);
     res.send(shift);

@@ -63,6 +63,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.TEXT,
         defaultValue: null,
       },
+      ssn: {
+        type: Sequelize.TEXT,
+        defaultValue: null,
+      },
       username: {
         type: Sequelize.TEXT,
         defaultValue: null,
