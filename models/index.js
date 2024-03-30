@@ -31,6 +31,7 @@ db.sequelize = sequelize;
 db.tokens = require("./token.model")(sequelize, Sequelize);
 db.job = require("./job.model")(sequelize, Sequelize);
 
+db.user_jobs_time = require("./user_job_time.model.js")(sequelize, Sequelize);
 
 db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
 
@@ -51,6 +52,20 @@ db.permissions = require("./permissions.model.js")(sequelize, Sequelize);
 
 db.user_jobs = require("./user_jobs.model.js")(sequelize, Sequelize);
 
+
+db.user_jobs_time.hasOne(db.job, {
+  // through: db.permissions,
+  foreignKey: 'jobid',
+  sourceKey: 'job_id',
+  as: 'job',
+});
+
+db.user_jobs_time.hasOne(db.users, {
+  // through: db.permissions,
+  foreignKey: 'userid',
+  sourceKey: 'user_id',
+  as: 'user',
+});
 
 db.users.hasMany(db.user_jobs, {
   // through: db.permissions,

@@ -15,9 +15,15 @@ router.get(
     JobController.getShift
 );
 
+
+router.get('/jobhistory',
+    // validate(shiftMasterValidation.getDetail),
+    JobController.jobhistory);
+
 router.get('/:id',
     // validate(shiftMasterValidation.getDetail),
     JobController.getDetailsById);
+
 router.post("/edit/:id", validate(JobValidation.edit), JobController.editShift);
 
 router.get(
@@ -35,6 +41,13 @@ router.post('/assignedjob/:id',
 router.get('/userjob/:id',
     // validate(shiftMasterValidation.getDetail),
     JobController.getuserjob);
+
+
+router.post('/savetime',
+    // validate(shiftMasterValidation.getDetail),
+    JobController.saveTime);
+
+
 
 module.exports = router;
 

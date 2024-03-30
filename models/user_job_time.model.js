@@ -1,11 +1,11 @@
 const { Model, Op } = require("sequelize");
 
 module.exports = (sequelize, Sequelize) => {
-    class userJobs extends Model {
+    class userJobsTime extends Model {
 
     }
 
-    userJobs.init(
+    userJobsTime.init(
         {
             id: {
                 type: Sequelize.INTEGER,
@@ -89,9 +89,9 @@ module.exports = (sequelize, Sequelize) => {
             freezeTableName: true,
 
             // define the table's name
-            tableName: "user_jobs",
+            tableName: "user_jobs_time",
         }
     );
 
-    return userJobs;
+    return userJobsTime;
 };

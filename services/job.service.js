@@ -1,13 +1,83 @@
 const db = require("../models");
 const Job = db.job;
 const UserJobs = db.user_jobs;
+const UserJobsTime = db.user_jobs_time;
 
+
+const saveTime = async (userBody) => {
+
+
+    const userd = userBody.forEach(async (user) => {
+
+        const [record, created] = await UserJobsTime.findOrCreate({
+            where: { user_id: user.user_id, job_id: user.job_id },
+            defaults: user // If record doesn't exist, create it with user details
+        });
+        if (!created) {
+            // If record already exists, update it with the new values
+            await record.update(user);
+        }
+
+    });
+    // const user = UserJobsTime.bulkCreate(userBody, {
+    //     fields: ["user_id", "job_id", 'time_in', "total_hrs"],
+    //     // updateOnDuplicate: ["user_id", "job_id"],
+    //     updateOnDuplicate,
+    //     returning: true,
+    //     alias: 'record'
+    //     // conflictAttributes: ["userid", "job_id"],
+
+
+    // })
+    return userd;
+};
 const saveShift = async (userBody) => {
     console.log(userBody);
     const user = await Job.create(userBody);
     return user;
 };
 
+
+
+const jobhistory = async (filter, options) => {
+    const code = await UserJobsTime.findAll(
+        {
+            // primaryKey: "roleid",
+            // include: [{
+            //     model: db.permissions,
+            //     foreignKey: 'role_id',
+            //     as: 'permissions',
+            //     include: [{
+            //         model: db.screen,
+            //         foreignKey: {
+            //             name: 'screenid'
+            //         },
+            //         sourceKey: 'screen_id',
+            //         as: 'screens' // Use 'screens' here
+            //     }]
+            // }]
+            include: [
+                'user',
+                'job'
+            ]
+            // include: [
+            //     {
+            //         model: 'permissions',
+            //         // model: 'screens',
+            //         include: [
+            //             'screens'
+            //         ]
+            //     }
+            // ]
+            // logging: function (str) {
+            //     console.log(str)
+            //     // do stuff with the sql str
+            // }
+
+        }
+    );
+    return code;
+}
 const queryShift = async (filter, options) => {
     //   const limit =
     //     options.limit && parseInt(options.limit, 10) > 0
@@ -98,5 +168,7 @@ module.exports = {
     getDetailsById,
     deletShift,
     assignedJob,
-    getuserjob
+    getuserjob,
+    saveTime,
+    jobhistory
 };
