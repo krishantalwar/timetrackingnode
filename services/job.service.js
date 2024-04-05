@@ -40,39 +40,14 @@ const saveShift = async (userBody) => {
 
 
 const jobhistory = async (filter, options) => {
+
     const code = await UserJobsTime.findAll(
         {
-            // primaryKey: "roleid",
-            // include: [{
-            //     model: db.permissions,
-            //     foreignKey: 'role_id',
-            //     as: 'permissions',
-            //     include: [{
-            //         model: db.screen,
-            //         foreignKey: {
-            //             name: 'screenid'
-            //         },
-            //         sourceKey: 'screen_id',
-            //         as: 'screens' // Use 'screens' here
-            //     }]
-            // }]
+
             include: [
                 'user',
                 'job'
             ]
-            // include: [
-            //     {
-            //         model: 'permissions',
-            //         // model: 'screens',
-            //         include: [
-            //             'screens'
-            //         ]
-            //     }
-            // ]
-            // logging: function (str) {
-            //     console.log(str)
-            //     // do stuff with the sql str
-            // }
 
         }
     );

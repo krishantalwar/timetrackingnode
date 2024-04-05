@@ -55,6 +55,10 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.INTEGER,
                 defaultValue: null,
             },
+            paid: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
+            },
         },
         {
             sequelize,
