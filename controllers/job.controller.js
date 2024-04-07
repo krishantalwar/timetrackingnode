@@ -51,7 +51,7 @@ const jobhistory = catchAsync(async (req, res) => {
     console.log(req.query)
     console.log(req.body)
     //   const filter = pick(req.query, ["search"]);
-    const result = await jobService.jobhistory();
+    const result = await jobService.jobhistory(req.query);
     res.send(result);
 });
 

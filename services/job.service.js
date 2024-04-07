@@ -4,6 +4,7 @@ const UserJobs = db.user_jobs;
 const UserJobsTime = db.user_jobs_time;
 
 
+const { Op } = require('sequelize');
 const saveTime = async (userBody) => {
 
 
@@ -39,14 +40,59 @@ const saveShift = async (userBody) => {
 
 
 
-const jobhistory = async (filter, options) => {
+const jobhistory = async (filter = {}, options = {}) => {
+
+    console.log(filter)
+    console.log(options)
+    let jobClause = {};
+    let userClause = {};
+    if (filter?.job_name) {
+        jobClause.name = {
+            [Op.like]: "%" + filter?.job_name + "%"
+        };
+    }
+    if (filter?.job_code) {
+        jobClause.job_code = {
+            [Op.like]: "%" + filter?.job_code + "%"
+        };
+    }
+
+    if (filter?.first_name) {
+        userClause.first_name = {
+            [Op.like]: "%" + filter?.first_name + "%"
+        };
+    }
+    if (filter?.user_code) {
+        userClause.user_code = {
+            [Op.like]: "%" + filter?.user_code + "%"
+        };
+    }
 
     const code = await UserJobsTime.findAll(
         {
 
+            // include: [
+            //     'user',
+            //     'job'
+            // ]
             include: [
-                'user',
-                'job'
+                {
+                    association: 'user',
+                    // attributes: ['name'],
+                    where: userClause
+                },
+                {
+                    association: 'job',
+                    // attributes: ['rate'],
+                    where: jobClause
+                    // where: {
+                    //     // Add your like condition for the User association here
+                    //     // For example, if you want to match usernames that contain 'john':
+                    // name: {
+                    //     [Op.like]: '%john%'  // Replace 'john' with the pattern you want to match
+                    // }
+                    // }
+                }
             ]
 
         }
