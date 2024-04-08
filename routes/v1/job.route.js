@@ -48,6 +48,10 @@ router.post('/savetime',
     JobController.saveTime);
 
 
+router.post('/payjob',
+    // validate(shiftMasterValidation.getDetail),
+    JobController.payjob);
+
 
 module.exports = router;
 

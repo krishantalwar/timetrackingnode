@@ -129,6 +129,20 @@ const getuserjob = catchAsync(async (req, res) => {
     res.send(result);
 });
 
+
+const payjob = catchAsync(async (req, res) => {
+    // console.log(req.body);
+    // console.log(req.params.id);
+    const body = {
+        "id": req.body.id,
+        "paid": 1,
+    }
+
+    const shift = await jobService.payjob(body, req.body.id);
+    res.send(shift);
+    // res.send({ "sdasd": "asdas" });
+});
+
 module.exports = {
     saveShift,
     getShift,
@@ -139,5 +153,6 @@ module.exports = {
     assignedJob,
     getuserjob,
     saveTime,
-    jobhistory
+    jobhistory,
+    payjob
 };

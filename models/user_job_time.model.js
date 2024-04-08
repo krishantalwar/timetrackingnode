@@ -71,6 +71,10 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING,
                 defaultValue: null,
             },
+            paid: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
+            },
 
             status: {
                 type: Sequelize.INTEGER,

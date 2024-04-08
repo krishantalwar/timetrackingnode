@@ -181,6 +181,17 @@ const getuserjob = async (userBody) => {
     return user;
 };
 
+
+const payjob = async (shiftBody, id) => {
+    console.log(shiftBody);
+    const shift = await UserJobsTime.update(shiftBody, {
+        where: {
+            "id": id,
+        },
+    });
+    console.log(shift);
+    return shift;
+};
 module.exports = {
     saveShift,
     queryShift,
@@ -191,5 +202,6 @@ module.exports = {
     assignedJob,
     getuserjob,
     saveTime,
-    jobhistory
+    jobhistory,
+    payjob
 };
