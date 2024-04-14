@@ -36,6 +36,8 @@ db.user_jobs_time = require("./user_job_time.model.js")(sequelize, Sequelize);
 db.shiftMaster = require("./shift.model")(sequelize, Sequelize);
 
 db.designation = require("./designation.model")(sequelize, Sequelize);
+db.tax = require("./tax.model.js")(sequelize, Sequelize);
+
 db.department = require("./department.model")(sequelize, Sequelize);
 db.userDetail = require("./userDetail.model")(sequelize, Sequelize);
 db.userType = require("./userType.model")(sequelize, Sequelize);

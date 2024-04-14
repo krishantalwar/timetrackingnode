@@ -29,6 +29,8 @@ router
         // validate(userValidation.getUsers),
         userController.getUsers);
 
+ router.route('/signup').post(userController.createSignupUser);    
+
 router
     .route('/create')
     .post(

@@ -23,6 +23,16 @@ const createUser = {
     }),
 };
 
+const createSignupUser={
+    body: Joi.object().keys({
+        email: Joi.string().required().email(),
+        phone_number:Joi.string().required(),
+        first_name: Joi.string().required(),
+        last_name: Joi.string().required(),
+    }),
+
+}
+
 const getUsers = {
     query: Joi.object().keys({
         search: Joi.string().allow(""),
@@ -59,6 +69,7 @@ const deleteUser = {
 
 module.exports = {
     createUser,
+    createSignupUser,
     getUsers,
     getUser,
     updateUser,

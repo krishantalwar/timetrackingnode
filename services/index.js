@@ -13,6 +13,8 @@ module.exports.profileService = require("./profile.service");
 module.exports.stateService = require("./state.service");
 module.exports.countryService = require("./country.service");
 module.exports.emailService = require("./email.service");
+module.exports.taxservice = require("./tax.service");
+
 
 module.exports.jobService = require("./job.service");
 

@@ -33,10 +33,11 @@ const createUser = async (userBody, headers) => {
   userBody.email = userBody.email.toLowerCase();
   // userBody = await bcryptPassword(userBody);
   let userdetailbody = {
-    "user_code": userBody.employe_code,
-    "email": userBody.email,
-    "first_name": userBody.first_name,
-    "last_name": userBody.last_name,
+    "user_code": userBody?.employe_code,
+    "email": userBody?.email,
+    "first_name": userBody?.first_name,
+    "last_name": userBody?.last_name,
+    "status":userBody?.status,
   }
   const user = await User.create(userdetailbody);
   console.log("asdasd", user)
@@ -45,20 +46,22 @@ const createUser = async (userBody, headers) => {
 
   if (user) {
     let detailbody = {
-      "shift_id": userBody.shift_allocation,
-      "role_id": userBody.role_assigned,
-      "reporting_manager_id": userBody.reporting_manager,
-      "user_id": user.userid,
-      "department_id": userBody.department,
-      "designation_id": userBody.designation,
-      "date_of_birth": userBody.date_of_birth,
-      "date_of_joining": userBody.date_of_joining,
-      "state": userBody.state,
-      "country": userBody.country,
+      "shift_id": userBody?.shift_allocation,
+      "role_id": userBody?.role_assigned,
+      "reporting_manager_id": userBody?.reporting_manager,
+      "user_id": user?.userid,
+      "department_id": userBody?.department,
+      "designation_id": userBody?.designation,
+      "date_of_birth": userBody?.date_of_birth,
+      "date_of_joining": userBody?.date_of_joining,
+      "state": userBody?.state,
+      "country": userBody?.country,
+      "phone": userBody?.phone,
+      "user_type": userBody?.user_type,
+      "status":userBody?.status,
     }
     const userdetail = await userDetail.create(detailbody);
   }
-
 
   return user;
 };

@@ -112,6 +112,34 @@ const createUser = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(files);
 });
 
+const createSignupUser = catchAsync(async (req, res) => {
+
+const body=req.body;
+body.employe_code= (await userService.getCode()).code;
+
+  
+
+  // add user comment
+  const user = await userService.createUser(body);
+
+  // const key = generateRandamKeyCode();
+
+  // const asd = await bcrypt.hash(key, 8);
+
+  // await userService.updateUserById(user.userid, {
+  //   "password": asd
+  // });
+
+  // if (user) {
+  //   await emailService.sendResetPasswordEmail(user.email, key);
+  //   // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+  // }
+
+  // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+  const files = req?.files ?? {};
+  res.status(httpStatus.CREATED).send(files);
+});
+
 const getUsers = catchAsync(async (req, res) => {
   const filter = pick(req.query, ["search"]);
   const options = pick(req.query, ["sortBy", "limit", "page"]);
@@ -155,6 +183,7 @@ const getCode = catchAsync(async (req, res) => {
 
 module.exports = {
   createUser,
+  createSignupUser,
   getUsers,
   getUser,
   updateUser,

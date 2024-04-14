@@ -10,9 +10,11 @@ const userTypeRoute = require("./v1/userType.route");
 const screenRoute = require("./v1/screen.route");
 const permissionsRoute = require("./v1/permissions.route");
 const profileRoute = require("./v1/profile.route");
+const signupRoute=require("./v1/user.route");
 const stateRoute = require("./v1/state.route");
 const countryRoute = require("./v1/country.route");
 const jobRoute = require("./v1/job.route");
+const taxRoute=require('./v1/tax.route');
 
 
 
@@ -75,6 +77,10 @@ const defaultRoutes = [
   {
     path: "/job",
     route: jobRoute,
+  },
+  {
+    path: "/tax",
+    route: taxRoute,
   },
 
   // {
