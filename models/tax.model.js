@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
 
   Tax.init(
     {
-      Taxid: {
+      taxid: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -16,14 +16,23 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         defaultValue: null,
       },
-      company_id: {
+      tax_code: {
         type: Sequelize.INTEGER,
-        defaultValue: true,
+        defaultValue: null,
       },
       tax_rate: {
         type: Sequelize.INTEGER,
         defaultValue: true,
       },
+      company_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
+      status: {
+        type: Sequelize.INTEGER,
+        defaultValue: true,
+      },
+
       created_by: {
         type: Sequelize.STRING,
         defaultValue: null,

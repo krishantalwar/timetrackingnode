@@ -3,6 +3,11 @@ const Tax = db.tax;
 
 
 const saveShift = async (userBody) => {
+  body = {
+    // "Taxid": userBody.tax,
+    "name": userBody.name,
+    "tax_rate": userBody.tax_rate,
+  }
   const user = await Tax.create(userBody);
   return user;
 };
@@ -46,7 +51,7 @@ const getCode = async () => {
   const code = await Tax.count();
   // console.log("asdasdsad");
   // return "desi" + code;
-  return { code: "DESI" + code };
+  return { code: "Tax" + code };
 };
 
 const getDetailsById = async (id) => {
@@ -57,7 +62,7 @@ const editShift = async (shiftBody, id) => {
   console.log(shiftBody)
   const shift = await Tax.update(shiftBody, {
     where: {
-      "designationid": id
+      "taxid": id
     }
   });
   console.log(shift);
@@ -66,7 +71,7 @@ const editShift = async (shiftBody, id) => {
 const deletShift = async (id) => {
   const shift = await Tax.destroy({
     where: {
-      "designationid": id
+      "taxid": id
     }
   });
   console.log(shift)
