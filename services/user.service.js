@@ -37,7 +37,7 @@ const createUser = async (userBody, headers) => {
     "email": userBody?.email,
     "first_name": userBody?.first_name,
     "last_name": userBody?.last_name,
-    "status":userBody?.status,
+    "status": userBody?.status,
   }
   const user = await User.create(userdetailbody);
   console.log("asdasd", user)
@@ -58,7 +58,7 @@ const createUser = async (userBody, headers) => {
       "country": userBody?.country,
       "phone": userBody?.phone,
       "user_type": userBody?.user_type,
-      "status":userBody?.status,
+      "status": userBody?.status,
     }
     const userdetail = await userDetail.create(detailbody);
   }
@@ -105,7 +105,10 @@ const queryUsers = async (filter, options) => {
   });
 
   const users = await User.findAll({
-    // where,
+    include: "userDetail",
+    where: {
+      status: 0,
+    },
     // include: [
     //   {
     //     model: Spot,
@@ -212,9 +215,12 @@ const updateUserById = async (userId, updateBody) => {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found");
   }
 
-  if (updateBody?.email && (await User.isEmailTaken(updateBody?.email, userId))) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken");
-  }
+  // if (updateBody?.email && (await User.isEmailTaken(updateBody?.email, userId))) {
+  //   throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken");
+  // }
+  // if (await User.isEmailTakenWithEmail(updateBody.email)) {
+  //   throw new ApiError(httpStatus.BAD_REQUEST, "Email already taken.");
+  // }
   // if (
   //   updateBody?.user_info?.cpfNumber &&
   //   (await User.isCpfNumberTakenExcludeUserId(

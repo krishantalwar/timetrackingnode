@@ -114,10 +114,10 @@ const createUser = catchAsync(async (req, res) => {
 
 const createSignupUser = catchAsync(async (req, res) => {
 
-const body=req.body;
-body.employe_code= (await userService.getCode()).code;
+  const body = req.body;
+  body.employe_code = (await userService.getCode()).code;
 
-  
+
 
   // add user comment
   const user = await userService.createUser(body);
@@ -130,10 +130,10 @@ body.employe_code= (await userService.getCode()).code;
   //   "password": asd
   // });
 
-  // if (user) {
-  //   await emailService.sendResetPasswordEmail(user.email, key);
-  //   // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
-  // }
+  if (user) {
+    await emailService.sendRegisterEmail(user.email);
+    // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+  }
 
   // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
   const files = req?.files ?? {};
@@ -162,7 +162,21 @@ const getUser = catchAsync(async (req, res) => {
 });
 
 const updateUser = catchAsync(async (req, res) => {
-  const user = await userService.updateUserById(req.params.userId, req.body);
+  // console.log("krisha", req.params.userid)
+  console.log("krisha", req.body)
+  const user = await userService.updateUserById(req.body.userid, req.body);
+  const key = generateRandamKeyCode();
+
+  const asd = await bcrypt.hash(key, 8);
+
+  await userService.updateUserById(user.userid, {
+    "password": asd
+  });
+
+  if (user) {
+    await emailService.sendResetPasswordEmail(user.email, key);
+    // res.status(httpStatus.CREATED).send({ "asda": "asdasd" });
+  }
   res.send(user);
 });
 

@@ -29,7 +29,7 @@ router
         // validate(userValidation.getUsers),
         userController.getUsers);
 
- router.route('/signup').post(userController.createSignupUser);    
+router.route('/signup').post(userController.createSignupUser);
 
 router
     .route('/create')
@@ -39,22 +39,25 @@ router
         upload.array('upload_document', 5),
         userController.createUser)
 
-router
-    .route('/:userId')
-    .get(
-        //auth('getUsers'), 
-        validate(userValidation.getUser), userController.getUser)
-    .patch(
-        // auth('manageUsers'),
-        validate(userValidation.updateUser), userController.updateUser)
-    .delete(
-        // auth('manageUsers'), 
-        validate(userValidation.deleteUser), userController.deleteUser);
+router.post('/edit/:id',
+    userController.updateUser);
 
-router
-    .route('/export/users')
-    .get(
-        //auth('getUsers'),
-        userController.getExportUsers);
+// router
+//     .route('/:userId')
+//     .get(
+//         //auth('getUsers'), 
+//         validate(userValidation.getUser), userController.getUser);
+// .patch(
+//     // auth('manageUsers'),
+//     validate(userValidation.updateUser), userController.updateUser)
+// .delete(
+//     // auth('manageUsers'), 
+//     validate(userValidation.deleteUser), userController.deleteUser);
+
+// router
+//     .route('/export/users')
+//     .get(
+//         //auth('getUsers'),
+//         userController.getExportUsers);
 
 module.exports = router;
