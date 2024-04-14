@@ -79,19 +79,15 @@ const jobhistory = async (filter = {}, options = {}) => {
                 {
                     association: 'user',
                     // attributes: ['name'],
-                    where: userClause
+                    include: "userDetail",
+                    where: userClause,
+
                 },
                 {
                     association: 'job',
                     // attributes: ['rate'],
                     where: jobClause
-                    // where: {
-                    //     // Add your like condition for the User association here
-                    //     // For example, if you want to match usernames that contain 'john':
-                    // name: {
-                    //     [Op.like]: '%john%'  // Replace 'john' with the pattern you want to match
-                    // }
-                    // }
+
                 }
             ]
 
