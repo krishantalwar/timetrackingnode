@@ -51,9 +51,9 @@ const sendResetPasswordEmail = async (to, token) => {
 const sendRegisterEmail = async (to) => {
     const subject = 'Welcome Email';
     // replace this url with the link to the reset password page of your front-end app
-    const resetPasswordUrl = token;
+    // const resetPasswordUrl = token;
     const text = `Dear user,
-    <br>
+   
          you account registed sucessfully, we will connect with you soon.
     `;
     await sendEmail(to, subject, text);
